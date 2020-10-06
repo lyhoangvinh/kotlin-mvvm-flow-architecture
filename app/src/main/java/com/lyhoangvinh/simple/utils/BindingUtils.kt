@@ -11,12 +11,10 @@ import androidx.databinding.BindingAdapter
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.webkit.WebSettings
-import android.widget.EditText
+
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.data.entities.*
-import com.lyhoangvinh.simple.ui.base.interfaces.OnClickable
 import com.lyhoangvinh.simple.ui.widget.RotateLoading
-import com.lyhoangvinh.simple.ui.widget.newton.NewtonCradleLoading
 
 object BindingUtils {
 
@@ -158,17 +156,17 @@ object BindingUtils {
         }
     }
 
-    @JvmStatic
-    @BindingAdapter("startNewtonCradleLoading")
-    fun startNewtonCradleLoading(newtonCradleLoading: NewtonCradleLoading, state: State?) {
-        if (state?.status == Status.LOADING) {
-            if (!newtonCradleLoading.isStart)
-                newtonCradleLoading.start()
-        } else {
-            if (newtonCradleLoading.isStart)
-                newtonCradleLoading.stop()
-        }
-    }
+//    @JvmStatic
+//    @BindingAdapter("startNewtonCradleLoading")
+//    fun startNewtonCradleLoading(newtonCradleLoading: NewtonCradleLoading, state: State?) {
+//        if (state?.status == Status.LOADING) {
+//            if (!newtonCradleLoading.isStart)
+//                newtonCradleLoading.start()
+//        } else {
+//            if (newtonCradleLoading.isStart)
+//                newtonCradleLoading.stop()
+//        }
+//    }
 
     @JvmStatic
     @BindingAdapter("observableConnection")
@@ -191,47 +189,47 @@ object BindingUtils {
         textView.text = String.format(textView.context.getString(R.string.could_not_found), keyword)
     }
 
-    @JvmStatic
-    @BindingAdapter("setButtonSearchClickable")
-    fun setButtonSearchClickable(view: View, listener: OnClickable?) {
-        view.setOnClickListener {
-            if (listener != null) {
-                view.setDelayedClickable(false)
-                listener.accept()
-                view.setDelayedClickable(true)
-            }
-            view.context.hideKeyboard(view)
-        }
-    }
+//    @JvmStatic
+//    @BindingAdapter("setButtonSearchClickable")
+//    fun setButtonSearchClickable(view: View, listener: OnClickable?) {
+//        view.setOnClickListener {
+//            if (listener != null) {
+//                view.setDelayedClickable(false)
+//                listener.accept()
+//                view.setDelayedClickable(true)
+//            }
+//            view.context.hideKeyboard(view)
+//        }
+//    }
 
-    @JvmStatic
-    @BindingAdapter("setOnEditorActionListener")
-    fun setOnEditorActionListener(editText: EditText, listener: OnClickable?) {
-        editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(p0: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    listener?.accept()
-                    editText.context.hideKeyboard(editText)
-                    return true
-                }
-                return false
-            }
-        })
-    }
-
-    @JvmStatic
-    @BindingAdapter("setTextChanges")
-    fun setTextChanges(editText: EditText, listener: OnClickable?) {
-        editText.textChanges {
-            listener?.accept()
-        }
-    }
-
-    @JvmStatic
-    @BindingAdapter("setOnClearTextClickable")
-    fun setOnClearTextClickable(view: View, listener: OnClickable?) {
-        view.setOnClickListener {
-            listener?.accept()
-        }
-    }
+//    @JvmStatic
+//    @BindingAdapter("setOnEditorActionListener")
+//    fun setOnEditorActionListener(editText: EditText, listener: OnClickable?) {
+//        editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+//            override fun onEditorAction(p0: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
+//                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                    listener?.accept()
+//                    editText.context.hideKeyboard(editText)
+//                    return true
+//                }
+//                return false
+//            }
+//        })
+//    }
+//
+//    @JvmStatic
+//    @BindingAdapter("setTextChanges")
+//    fun setTextChanges(editText: EditText, listener: OnClickable?) {
+//        editText.textChanges {
+//            listener?.accept()
+//        }
+//    }
+//
+//    @JvmStatic
+//    @BindingAdapter("setOnClearTextClickable")
+//    fun setOnClearTextClickable(view: View, listener: OnClickable?) {
+//        view.setOnClickListener {
+//            listener?.accept()
+//        }
+//    }
 }

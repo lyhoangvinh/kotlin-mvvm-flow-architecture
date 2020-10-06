@@ -17,4 +17,27 @@
     <string name="title_avg_comic">Avg Comic</string>
     <string name="title_setting">Setting</string>
     <string name="title_refresh">Refresh</string>
+
+
+    <!--error message-->
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="connect_timeout">Connect Timeout</string>
+    <string name="force_update_app">Please update app</string>
+    <string name="server_maintain_message">Server maintain, please try again later</string>
+    <string name="unknown_error">Something error, please try again later</string>
+
+    <!--main screen-->
+    <string name="main_tab_popular">POPULAR</string>
+    <string name="main_tab_top_rated">TOP RATED</string>
+    <string name="main_tab_favorite">FAVORITE</string>
+    <string name="main_tab_profile">PROFILE</string>
+    <string name="main_tab_tv">TV</string>
+
+    <!--login-->
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button_login">Login</string>
+
+    <string name="ok">OK</string>
+    <string name="summary">Summary</string>
 </resources>

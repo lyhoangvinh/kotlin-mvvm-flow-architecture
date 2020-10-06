@@ -15,70 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name="com.lyhoangvinh.simple.ui.features.comic.testfragment.ComicSingleActivity"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN"/>-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        </activity>
 
         <activity
-            android:name=".ui.features.comic.testpaging.ComicPagingActivity"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN"/>-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        </activity>
-
-        <activity
-            android:name="com.lyhoangvinh.simple.ui.features.splash.SplashActivity"
-            android:screenOrientation="portrait">
+            android:name=".ui.features.splash.SplashActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.features.avg.main.AvgActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.lyhoangvinh.simple.ui.features.avg.detail.DetailActivity"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN"/>-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        </activity>
-
-        <activity
-            android:name="com.lyhoangvinh.simple.ui.features.avg.search.local.SearchActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.lyhoangvinh.simple.ui.features.avg.search.paging.SearchPagedActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.features.comic.testactivity.ComicActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.features.comicavg.ComicAvgActivity"/>
-
-        <activity
-            android:name=".ui.features.setting.SettingActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".ui.features.comic.detail.ImageDetailActivity"/>
 
         <receiver android:name=".receiver.NetworkReceiver" />
 

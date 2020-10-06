@@ -2,7 +2,6 @@ package com.lyhoangvinh.simple.ui.base.fragment
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import android.graphics.Color
@@ -13,10 +12,12 @@ import androidx.annotation.Nullable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.utils.AutoClearedValue
 import com.lyhoangvinh.simple.utils.hideKeyboard
-import dagger.android.support.DaggerFragment
 
 
 /**
@@ -24,7 +25,7 @@ import dagger.android.support.DaggerFragment
  * Base class using data binding. The binding object reference will be removed as soon as the fragment view is destroyed
  */
 
-abstract class BaseFragment<B : ViewDataBinding> : DaggerFragment() {
+abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     private var dialog: Dialog? = null
 
@@ -34,7 +35,15 @@ abstract class BaseFragment<B : ViewDataBinding> : DaggerFragment() {
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AutoClearedValue(this, DataBindingUtil.inflate<B>(inflater, getLayoutResource(), container, false)).get()!!
+        if (::binding.isInitialized.not()) {
+            binding = AutoClearedValue(this, DataBindingUtil.inflate<B>(inflater, getLayoutResource(), container, false)).get()!!
+            binding.apply {
+//                setVariable(BR.viewModel, viewModel)
+                root.isClickable = true
+                executePendingBindings()
+            }
+        }
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -46,7 +55,7 @@ abstract class BaseFragment<B : ViewDataBinding> : DaggerFragment() {
         Dialog(ctx).let {
             it.show()
             it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            it.setContentView(R.layout.progress_dialog)
+//            it.setContentView(R.layout.progress_dialog)
             it.setCancelable(false)
             it.setCanceledOnTouchOutside(false)
             return it
@@ -67,5 +76,13 @@ abstract class BaseFragment<B : ViewDataBinding> : DaggerFragment() {
      */
     open fun onBackPressed(): Boolean {
         return false
+    }
+
+    fun Fragment.getNavController(): NavController? {
+        return try {
+            NavHostFragment.findNavController(this)
+        } catch (e: IllegalStateException) {
+            null
+        }
     }
 }

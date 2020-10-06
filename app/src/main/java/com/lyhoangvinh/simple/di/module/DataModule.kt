@@ -7,8 +7,11 @@ import com.lyhoangvinh.simple.data.SharedPrefs
 import com.lyhoangvinh.simple.data.dao.*
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class DataModule {
 

@@ -4,10 +4,10 @@ import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.lyhoangvinh.simple.ui.base.interfaces.UiRefreshable
 import com.lyhoangvinh.simple.utils.createDialog
-import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Base activity that will be injected automatically by implementing {@link HasSupportFragmentInjector}
@@ -15,7 +15,7 @@ import dagger.android.support.DaggerAppCompatActivity
  * All fragment inside this activity is injected as well
  */
 
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     private var dialog: Dialog? = null
 

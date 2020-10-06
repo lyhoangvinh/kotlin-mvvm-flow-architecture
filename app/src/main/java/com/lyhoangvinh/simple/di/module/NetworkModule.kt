@@ -7,14 +7,16 @@ import com.lyhoangvinh.simple.data.services.AvgleService
 import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.di.qualifier.ApplicationContext
 import com.lyhoangvinh.simple.di.qualifier.OkHttpNoAuth
-import com.lyhoangvinh.simple.utils.ConnectionLiveData
-import com.lyhoangvinh.simple.utils.makeOkHttpClientBuilder
-import com.lyhoangvinh.simple.utils.makeService
+import com.lyhoangvinh.simple.utils.extension.makeOkHttpClientBuilder
+import com.lyhoangvinh.simple.utils.extension.makeService
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class NetworkModule {
 
@@ -22,12 +24,6 @@ class NetworkModule {
     @OkHttpNoAuth
     @Singleton
     internal fun provideOkHttpClientNoAuth(@ApplicationContext context: MyApplication): OkHttpClient = makeOkHttpClientBuilder(context).build()
-//        .addInterceptor().build()
-//todo: https://stackoverflow.com/questions/45284974/how-to-specify-get-request-encoding-retrofit-okhttp
-
-//    @Singleton
-//    @Provides
-//    internal fun providesConnectionLiveData(context: MyApplication): ConnectionLiveData = ConnectionLiveData(context)
 
     @Provides
     @Singleton

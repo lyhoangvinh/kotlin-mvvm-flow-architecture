@@ -4,40 +4,32 @@ import android.os.Bundle
 import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.lyhoangvinh.simple.data.entities.State
 import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
-import com.lyhoangvinh.simple.utils.NavigatorHelper
-import com.lyhoangvinh.simple.utils.genericCastOrNull
-import java.lang.reflect.ParameterizedType
+import com.lyhoangvinh.simple.utils.extension.observe
 import javax.inject.Inject
 
 abstract class BaseViewModelActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected lateinit var binding: B
 
-    @Inject
-    lateinit var navigatorHelper: NavigatorHelper
-
-    @VisibleForTesting
-    lateinit var binding: B
-
-    lateinit var viewModel: VM
+    protected abstract val viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, getLayoutResource())
-        // noinspection unchecked
-        val viewModelClass =
-            genericCastOrNull<Class<VM>>((javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1]) // 1 is BaseViewModel
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
-
-        viewModel.onCreate(this, intent.extras, navigatorHelper)
-        viewModel.stateLiveData.observe(this, Observer { handleState(it) })
+        if (::binding.isInitialized.not()) {
+            binding = DataBindingUtil.setContentView(this, getLayoutResource())
+            binding.apply {
+//                setVariable(BR.viewModel, viewModel)
+                root.isClickable = true
+                executePendingBindings()
+            }
+        }
+        binding.lifecycleOwner = this
+        viewModel.onCreate(this, intent.extras)
+        viewModel.stateLiveData.observe(this) { handleState(it) }
     }
 
     /**

@@ -7,13 +7,10 @@ import androidx.annotation.CallSuper
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.lyhoangvinh.simple.data.entities.State
 import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.ui.base.activity.BaseActivity
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
-import com.lyhoangvinh.simple.utils.NavigatorHelper
-import com.lyhoangvinh.simple.utils.showToastMessage
 import javax.inject.Inject
 
 /**
@@ -26,14 +23,8 @@ import javax.inject.Inject
 
 abstract class BaseViewModelFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseFragment<B>() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var navigatorHelper: NavigatorHelper
-
-    //    @Inject
-    lateinit var viewModel: VM
+    protected abstract val viewModel: VM
 
     protected abstract fun createViewModelClass(): Class<VM>
 
@@ -47,10 +38,11 @@ abstract class BaseViewModelFragment<B : ViewDataBinding, VM : BaseViewModel> : 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(createViewModelClass())
-        viewModel.onCreate(this, getFragmentArguments(), navigatorHelper)
-        viewModel.stateLiveData.observe(this, Observer { handleState(it) })
+        viewModel.onCreate(this, getFragmentArguments())
+        viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { handleState(it) })
         initialize(view, activity)
+
+
     }
 
     protected abstract fun initialize(view: View, ctx: Context?)

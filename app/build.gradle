@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -45,6 +49,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+
     dataBinding {
         enabled = true
     }
@@ -59,12 +65,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.supportConstraintVersion"
     implementation "androidx.multidex:multidex:$rootProject.ext.multidexVersion"
     //noinspection GradleCompatible
-    implementation "com.google.android.material:material:$rootProject.ext.androidxSupportVersion"
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+//    implementation "com.google.android.material:material:$rootProject.ext.androidxSupportVersion"
     implementation "androidx.legacy:legacy-support-v4:$rootProject.ext.androidxSupportVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.ext.androidxSupportVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.ext.androidxSupportVersion"
@@ -72,23 +79,25 @@ dependencies {
     implementation "androidx.fragment:fragment:$rootProject.ext.androidxSupportVersion"
     implementation "androidx.vectordrawable:vectordrawable:$rootProject.ext.androidxSupportVersion"
     implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.lifecycleExtensionsVersion"
+
+    //lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
     implementation "androidx.core:core:$rootProject.ext.coreVersion"
     implementation "androidx.core:core-ktx:$rootProject.ext.coreKtxVersion"
     implementation "androidx.viewpager2:viewpager2:$rootProject.ext.androidxSupportVersion"
 
-    //kotlin coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.ext.kotlinxVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.kotlinxVersion"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
+
 
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-
-    //rx
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
-    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbindingVersion"
 
     //room
     implementation "androidx.room:room-runtime:$rootProject.ext.roomDatabaseVersion"
@@ -103,38 +112,30 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpLoggingInterceptorVersion"
 
-    //dagger 2
-    implementation "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.dagger2Version"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
-    testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
-    compileOnly 'javax.annotation:jsr250-api:1.0'
-
-    //my util
-    implementation "com.github.lyhoangvinh:myutil:$rootProject.ext.myutilVersion"
+    //dagger hilt
+    implementation "com.google.dagger:hilt-android:$rootProject.ext.daggerHiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.ext.daggerHiltVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
 
     //picasso
     implementation "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
 
     //paging
     implementation "androidx.paging:paging-runtime:$rootProject.ext.pagingVersion"
     // alternatively - without Android dependencies for testing
     testImplementation "androidx.paging:paging-common:$rootProject.ext.pagingVersion"
-    // For Kotlin use paging-common-ktx
     // optional - RxJava support
     implementation "androidx.paging:paging-rxjava2:$rootProject.ext.pagingVersion" // For Kotlin use paging-rxjava2-ktx
-    implementation "com.airbnb.android:epoxy:$rootProject.ext.epoxyVerion"
-    implementation "com.airbnb.android:epoxy-paging:$rootProject.ext.epoxyVerion"
-    kapt "com.airbnb.android:epoxy-processor:$rootProject.ext.epoxyVerion"
 
-    //ultraviewpager
-    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
-        transitive = true
-    }
+    // navigation
+    // https://developer.android.com/jetpack/androidx/releases/navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.ext.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.ext.navigationVersion"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$rootProject.ext.navigationVersion"
 
-    //ExpansionPanel
-    implementation "com.github.florent37:expansionpanel:$rootProject.ext.expansionPanelVersion"
-
+    implementation "androidx.navigation:navigation-fragment:$rootProject.ext.navigationVersion"
+    implementation "androidx.navigation:navigation-ui:$rootProject.ext.navigationVersion"
 }

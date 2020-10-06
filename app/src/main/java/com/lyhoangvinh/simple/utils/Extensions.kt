@@ -34,16 +34,12 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.transition.TransitionManager
-import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.data.response.ResponseFourZip
-import com.lyhoangvinh.simple.data.source.base.PlainResponseFourConsumer
 import com.lyhoangvinh.simple.di.qualifier.ActivityContext
-import com.lyhoangvinh.simple.ui.base.interfaces.PlainConsumer
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.lang.ref.WeakReference
 import java.text.ParseException
@@ -108,7 +104,7 @@ fun Activity.createDialog(): Dialog? {
     val progressDialog = Dialog(this)
     progressDialog.let {
         it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        it.setContentView(R.layout.progress_dialog)
+//        it.setContentView(R.layout.progress_dialog)
         it.setCancelable(false)
         it.setCanceledOnTouchOutside(false)
         return it
@@ -293,16 +289,6 @@ fun TextView.startCustomAnimation(isCollapsing: Boolean, finalText: String, dura
     animator.start()
 }
 
-@SuppressLint("CheckResult")
-fun EditText.textChanges(onTextChangeListener: (String) -> Unit) {
-    RxTextView.textChanges(this).debounce(1000, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
-        .skip(1)
-        .subscribe { charSequence -> onTextChangeListener.invoke(charSequence.toString()) }
-}
-
-
 @Suppress("DEPRECATION")
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun Activity.setStatusBarGradients() {
@@ -363,19 +349,6 @@ fun View.setDelayedClickable(clickable: Boolean) {
     setDelayedClickable(clickable, 300L)
 }
 
-fun <T> newPlainConsumer(consumer: (T) -> Unit) = object : PlainConsumer<T> {
-    override fun accept(t: T) {
-        consumer.invoke(t)
-    }
-}
-
-fun <T1, T2, T3, T4> newPlainResponseFourConsumer(consumer: (ResponseFourZip<T1, T2, T3, T4>) -> Unit) = object :
-    PlainResponseFourConsumer<T1, T2, T3, T4> {
-    override fun accept(dto: ResponseFourZip<T1, T2, T3, T4>) {
-        consumer.invoke(dto)
-    }
-}
-
 fun <T> MutableLiveData<T>.updateValueIfNew(newValue: T) {
     if (this.value != newValue) value = newValue
 }
@@ -402,7 +375,7 @@ fun <T> List<T>.compare(actual: List<T>): Boolean {
 
 fun<T> ViewGroup.bindLayout(inflater: LayoutInflater , layoutId:Int, entry: T) : ViewDataBinding = entry.let {
     val binding : ViewDataBinding = DataBindingUtil.inflate(inflater, layoutId, this, false)
-    binding.setVariable(BR.dto, it)
+//    binding.setVariable(BR.dto, it)
     return@let binding
 }
 
@@ -472,7 +445,7 @@ fun ViewGroup.entryChangeListener(layoutId: Int) = object : ObservableList.OnLis
         for (i in positionStart until end){
             val data = sender?.get(i)!!
             val binding = bindLayout(inflater, layoutId, data)
-            binding.setVariable(BR.dto, data)
+//            binding.setVariable(BR.dto, data)
             removeViewAt(i)
             addView(binding.root, i)
         }

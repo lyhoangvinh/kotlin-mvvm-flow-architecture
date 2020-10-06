@@ -5,7 +5,6 @@ import androidx.paging.DataSource
 import androidx.room.*
 import com.lyhoangvinh.simple.data.entities.comic.Issues
 
-
 @Dao
 interface IssuesDao : BaseDao<Issues> {
     @Query("SELECT * FROM Issues")
