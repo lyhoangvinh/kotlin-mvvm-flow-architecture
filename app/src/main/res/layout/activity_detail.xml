@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.lyhoangvinh.simple.data.entities.Connection" />
+
+        <import type="android.view.View" />
+
+        <import type="com.lyhoangvinh.simple.data.entities.Status" />
+
+        <import type="com.lyhoangvinh.simple.data.entities.State" />
+
+        <variable
+            name="state"
+            type="com.lyhoangvinh.simple.data.entities.State" />
+
+        <variable
+            name="vm"
+            type="com.lyhoangvinh.simple.ui.features.avg.detail.DetailViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar_back"
+                app:titleToolBar="@{vm.url}" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <WebView
+                android:id="@+id/webViewDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:loadWebViewUrl="@{vm.url}"
+                app:setWebChromeClient="@{vm.webChromeClient}"
+                app:setWebViewClient="@{vm.webViewClient}" />
+
+            <ProgressBar
+                android:id="@+id/viewLoading"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:setAnimatedVisibility="@{state.status == Status.LOADING}"
+                tools:visibility="visible" />
+
+            <include
+                app:currentConnection="@{vm.connectionObservable.currentConnection}"
+                layout="@layout/layout_state_network_off" />
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

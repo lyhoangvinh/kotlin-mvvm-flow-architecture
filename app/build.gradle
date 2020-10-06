@@ -1,0 +1,140 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.lyhoangvinh.simple"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "COMIC_ENDPOINT", (project.findProperty("COMIC_ENDPOINT") ?: "")
+            buildConfigField "String", "AVGLE_ENDPOINT", (project.findProperty("AVGLE_ENDPOINT") ?: "")
+            buildConfigField "String", "HEADER_AUTH", "\"Authorization\""
+            buildConfigField "boolean", "ENABLE_LOGCAT", "true"
+            buildConfigField "String", "API_KEY", (project.findProperty("API_KEY") ?: "")
+            archivesBaseName = "mvvmarchitecture-app-$defaultConfig.versionName($defaultConfig.versionCode)"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "COMIC_ENDPOINT", (project.findProperty("COMIC_ENDPOINT") ?: "")
+            buildConfigField "String", "AVGLE_ENDPOINT", (project.findProperty("AVGLE_ENDPOINT") ?: "")
+            buildConfigField "boolean", "ENABLE_LOGCAT", "false"
+            buildConfigField "String", "HEADER_AUTH", "\"Authorization\""
+            buildConfigField "String", "API_KEY", (project.findProperty("API_KEY") ?: "")
+            archivesBaseName = "mvvmarchitecture-app-$defaultConfig.versionName($defaultConfig.versionCode)"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    kapt {
+        correctErrorTypes = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.supportConstraintVersion"
+    implementation "androidx.multidex:multidex:$rootProject.ext.multidexVersion"
+    //noinspection GradleCompatible
+    implementation "com.google.android.material:material:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.cardview:cardview:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.fragment:fragment:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.ext.androidxSupportVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.lifecycleExtensionsVersion"
+    implementation "androidx.core:core:$rootProject.ext.coreVersion"
+    implementation "androidx.core:core-ktx:$rootProject.ext.coreKtxVersion"
+    implementation "androidx.viewpager2:viewpager2:$rootProject.ext.androidxSupportVersion"
+
+    //kotlin coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.ext.kotlinxVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.kotlinxVersion"
+
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+
+    //rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbindingVersion"
+
+    //room
+    implementation "androidx.room:room-runtime:$rootProject.ext.roomDatabaseVersion"
+    kapt "androidx.room:room-compiler:$rootProject.ext.roomDatabaseVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomDatabaseVersion"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitConverterScalars"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpLoggingInterceptorVersion"
+
+    //dagger 2
+    implementation "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+
+    //my util
+    implementation "com.github.lyhoangvinh:myutil:$rootProject.ext.myutilVersion"
+
+    //picasso
+    implementation "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+
+    //paging
+    implementation "androidx.paging:paging-runtime:$rootProject.ext.pagingVersion"
+    // alternatively - without Android dependencies for testing
+    testImplementation "androidx.paging:paging-common:$rootProject.ext.pagingVersion"
+    // For Kotlin use paging-common-ktx
+    // optional - RxJava support
+    implementation "androidx.paging:paging-rxjava2:$rootProject.ext.pagingVersion" // For Kotlin use paging-rxjava2-ktx
+    implementation "com.airbnb.android:epoxy:$rootProject.ext.epoxyVerion"
+    implementation "com.airbnb.android:epoxy-paging:$rootProject.ext.epoxyVerion"
+    kapt "com.airbnb.android:epoxy-processor:$rootProject.ext.epoxyVerion"
+
+    //ultraviewpager
+    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+        transitive = true
+    }
+
+    //ExpansionPanel
+    implementation "com.github.florent37:expansionpanel:$rootProject.ext.expansionPanelVersion"
+
+}

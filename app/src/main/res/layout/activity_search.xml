@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:fitsSystemWindows="true"
+                app:elevation="0dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <include layout="@layout/view_recyclerview" />
+
+            <include
+                layout="@layout/view_no_data"
+                app:errorData="@{vm.stateObservable.emptyDataOb}" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rlSearch"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/darker_gray"
+                android:visibility="gone"
+                app:setAnimatedVisibility="@{vm.stateObservable.visibilityView}"
+                tools:visibility="visible" />
+
+            <FrameLayout
+                android:id="@+id/fmHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:visibility="gone"
+                android:background="@color/colorWhite"
+                app:setAnimatedVisibility="@{vm.stateObservable.visibilityView}"
+                tools:visibility="visible">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvHistorySearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_history" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imvBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="@dimen/padding_8dp"
+                    android:tint="@color/material_blue_700"
+                    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/square_button_size"
+                    android:layout_toStartOf="@+id/imvSearch"
+                    android:layout_toEndOf="@id/imvBack"
+                    android:layout_marginTop="@dimen/padding_4dp"
+                    android:background="@drawable/bg_corner_gray_thin">
+
+                    <EditText
+                        android:id="@+id/edtSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="@dimen/padding_10dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="@string/search"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:text="@={vm.keyword}"
+                        android:layout_toStartOf="@+id/imvClearText"
+                        android:textSize="@dimen/search_bar_text_size"
+                        app:setTextChanges="@{vm.searchSuggestionsListener}"
+                        app:setOnEditorActionListener="@{vm.searchClickable}"
+                        tools:text="ミニミニ◆つるぺたいもうと" />
+
+                    <ImageView
+                        android:id="@+id/imvClearText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:setOnClearTextClickable="@{vm.onClearTextClickable}"
+                        app:setAnimatedVisibility="@{vm.stateObservable.visibilityView}"
+                        android:background="@drawable/ic_cancel_button"
+                        android:layout_marginStart="@dimen/padding_4dp"
+                        android:layout_marginEnd="@dimen/padding_4dp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imvSearch"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/padding_10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="@dimen/padding_10dp"
+                    app:setButtonSearchClickable="@{vm.searchClickable}"
+                    app:srcCompat="@drawable/ic_search_black_24dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.lyhoangvinh.simple.data.entities.DataEmpty" />
+
+        <import type="com.lyhoangvinh.simple.ui.base.interfaces.OnClickable" />
+
+        <variable
+            name="vm"
+            type="com.lyhoangvinh.simple.ui.features.avg.search.paging.SearchPagedViewModel" />
+    </data>
+
+</layout>
