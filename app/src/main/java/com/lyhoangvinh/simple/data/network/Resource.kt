@@ -1,11 +1,14 @@
 package com.lyhoangvinh.simple.data.network
 
+import com.lyhoangvinh.simple.data.entities.State
+import com.lyhoangvinh.simple.data.entities.Status
+
 /**
  * A generic class that holds a value with its loading status.
  * @param <T>
 </T> */
 
-data class Resource<T>(val status: Status, val data: T?, val message: String?, val codeStatus: Int?= null) {
+data class Resource<out T>(val status: Status, val data: T?, val message: String?, val codeStatus: Int?= null) {
     val state: State =
         State(status, message)
     override fun equals(other: Any?): Boolean {

@@ -1,11 +1,10 @@
 package com.lyhoangvinh.simple.utils.extension
 
-import android.content.Context
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
+import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.data.network.Resource
-import com.lyhoangvinh.simple.data.network.Status
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody

@@ -10,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
 interface ComicRepo {
     fun getData() : Flow<PagingData<Issues>>
     suspend fun getData2(): Resource<BaseResponseComic<Issues>>
-    suspend fun getDataSanwit(): LiveData<List<Issues>>
+    suspend fun getDataSanwit(): LiveData<Resource<List<Issues>>>
 }

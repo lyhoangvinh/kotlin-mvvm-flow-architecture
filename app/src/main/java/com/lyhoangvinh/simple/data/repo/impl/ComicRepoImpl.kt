@@ -15,6 +15,7 @@ import com.lyhoangvinh.simple.data.source.ComicSource2
 import com.lyhoangvinh.simple.utils.Constants
 import com.skydoves.sandwich.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -33,11 +34,12 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
 
     override suspend fun getData2(): Resource<BaseResponseComic<Issues>> = comicSource2.fetchData()
 
-    override suspend fun getDataSanwit(): LiveData<List<Issues>>  = withContext(Dispatchers.IO) {
-        val liveData = MutableLiveData<List<Issues>>(emptyList())
-        comicVineService.getIssues3(20, 5, Constants.KEY, "json", "cover_date: desc").request { response ->
+    override suspend fun getDataSanwit(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
+        val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())
+        delay(100L)
+        comicVineService.getIssues3(20, 1, Constants.KEY, "json", "cover_date: desc").request { response ->
             response.onSuccess {
-                liveData.postValue(data?.body()?.results)
+                liveData.postValue(Resource.success(data?.results.orEmpty()))
             }.onError {
                 error(message())
             }.onException {

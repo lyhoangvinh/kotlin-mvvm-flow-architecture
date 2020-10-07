@@ -2,11 +2,11 @@ package com.lyhoangvinh.simple.ui.base.viewmodel
 
 import android.os.Bundle
 import androidx.annotation.CallSuper
+import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.lyhoangvinh.simple.data.entities.State
 import com.lyhoangvinh.simple.data.network.Resource
-import com.lyhoangvinh.simple.data.network.Status
 import com.lyhoangvinh.simple.utils.SafeMutableLiveData
 import kotlinx.coroutines.Dispatchers
 
@@ -51,11 +51,14 @@ abstract class BaseViewModel : ViewModel() {
         isFirstTimeUiCreate = true
     }
 
-    internal fun <T> launchOnViewModelScope(block: suspend () -> LiveData<T>): LiveData<Resource<T>> {
+    internal fun <T> launchOnViewModelScope(block: suspend () -> LiveData<T>): LiveData<T> {
         return liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-            emit(Resource.loading())
-            val source = block().map { Resource.success(it) }
-            emitSource(source)
+            emitSource(block())
         }
+    }
+
+    @MainThread
+    protected fun publishState(state: State) {
+        stateLiveData.setValue(state)
     }
 }

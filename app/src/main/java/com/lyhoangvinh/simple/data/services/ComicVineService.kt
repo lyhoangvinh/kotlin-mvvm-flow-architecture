@@ -30,5 +30,5 @@ interface ComicVineService {
         , @Query("api_key") api_key: String, @Query("format") format: String
         , @Query("sort") sort: String
     ):
-            Call<Response<BaseResponseComic<Issues>>>
+            Call<BaseResponseComic<Issues>>
 }
