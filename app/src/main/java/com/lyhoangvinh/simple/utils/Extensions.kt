@@ -34,18 +34,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.transition.TransitionManager
-import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.R
-import com.lyhoangvinh.simple.data.response.ResponseFourZip
-import com.lyhoangvinh.simple.di.qualifier.ActivityContext
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import io.reactivex.schedulers.Schedulers
+import dagger.hilt.android.qualifiers.ActivityContext
 import java.lang.ref.WeakReference
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.math.hypot
 
 fun ImageView.loadImageIssues(url: String) {
@@ -62,26 +58,29 @@ fun ImageView.loadImageIssues(url: String) {
  *
  * `viewGroup.inflate(R.layout.foo)`
  */
-fun ViewGroup.inflate(@ActivityContext context:Context,@LayoutRes layout: Int, attachToRoot: Boolean = false): View {
+fun ViewGroup.inflate(@ActivityContext context:Context, @LayoutRes layout: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
 }
 
 fun ImageView.loadImage(url: String) {
-    Picasso.get()
-        .load(url)
-        .placeholder(R.drawable.ic_placeholder_rectangle_200px)
-        .error(R.drawable.poster_show_not_available)
-        .fit()
-        .centerCrop()
-        .into(this, object : Callback {
-            override fun onSuccess() {
+    if (url.isEmpty()) {
+        Picasso.get()
+            .load(R.drawable.poster_show_not_available)
+            .placeholder(R.drawable.ic_placeholder_rectangle_200px)
+            .error(R.drawable.poster_show_not_available)
+            .fit()
+            .centerCrop()
+            .into(this)
+    } else {
+        Picasso.get()
+            .load(url)
+            .placeholder(R.drawable.ic_placeholder_rectangle_200px)
+            .error(R.drawable.poster_show_not_available)
+            .fit()
+            .centerCrop()
+            .into(this)
+    }
 
-            }
-
-            override fun onError(e: java.lang.Exception?) {
-                loadImage(url)
-            }
-        })
 }
 
 fun ImageView.loadImageNotFit(url: String) {

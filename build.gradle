@@ -78,7 +78,7 @@ ext {
     architectureVersion = '1.1.1'
 
     //paging library
-    pagingVersion = "2.1.0"
+    pagingVersion= "3.0.0-alpha06"
     epoxyVerion = "3.5.0"
 
     //Test dependencies

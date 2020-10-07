@@ -1,7 +1,6 @@
 package com.lyhoangvinh.simple.utils
 
 
-import com.lyhoangvinh.simple.Constants
 import com.lyhoangvinh.simple.data.SharedPrefs
 import javax.inject.Inject
 

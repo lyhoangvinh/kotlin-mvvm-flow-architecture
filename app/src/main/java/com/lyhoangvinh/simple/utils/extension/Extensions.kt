@@ -19,7 +19,7 @@ import java.io.IOException
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 
-fun makeOkHttpClientBuilder(context: Context): OkHttpClient.Builder {
+fun makeOkHttpClientBuilder(): OkHttpClient.Builder {
     val logging = HttpLoggingInterceptor()
 
     if (BuildConfig.DEBUG) {

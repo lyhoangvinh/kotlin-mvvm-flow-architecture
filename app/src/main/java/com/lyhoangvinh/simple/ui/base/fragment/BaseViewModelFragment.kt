@@ -23,10 +23,7 @@ import javax.inject.Inject
 
 abstract class BaseViewModelFragment<B : ViewDataBinding, VM : BaseViewModel> : BaseFragment<B>() {
 
-
     protected abstract val viewModel: VM
-
-    protected abstract fun createViewModelClass(): Class<VM>
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -41,8 +38,6 @@ abstract class BaseViewModelFragment<B : ViewDataBinding, VM : BaseViewModel> : 
         viewModel.onCreate(this, getFragmentArguments())
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { handleState(it) })
         initialize(view, activity)
-
-
     }
 
     protected abstract fun initialize(view: View, ctx: Context?)

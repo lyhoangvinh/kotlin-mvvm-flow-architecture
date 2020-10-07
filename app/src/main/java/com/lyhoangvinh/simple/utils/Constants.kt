@@ -1,9 +1,13 @@
-package com.lyhoangvinh.simple
+package com.lyhoangvinh.simple.utils
+
+import com.lyhoangvinh.simple.BuildConfig
 
 class Constants {
     companion object {
-        const val COMIC_ENDPOINT = BuildConfig.COMIC_ENDPOINT
-        const val AVGLE_ENDPOINT = BuildConfig.AVGLE_ENDPOINT
+        const val COMIC_ENDPOINT =
+            BuildConfig.COMIC_ENDPOINT
+        const val AVGLE_ENDPOINT =
+            BuildConfig.AVGLE_ENDPOINT
         const val KEY = BuildConfig.API_KEY
         const val EXTRA_DATA = "EXTRA_DATA"
         const val PORTAL = "KEYWORD_PORTAL"

@@ -17,14 +17,13 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.features.splash.SplashActivity"
+            android:name=".ui.features.MainActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <receiver android:name=".receiver.NetworkReceiver" />
 
     </application>

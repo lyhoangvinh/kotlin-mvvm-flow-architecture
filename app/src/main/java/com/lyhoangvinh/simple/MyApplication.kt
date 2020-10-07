@@ -1,4 +1,5 @@
 package com.lyhoangvinh.simple
+
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -6,7 +7,8 @@ import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.Toast
-import com.lyhoangvinh.simple.ui.features.splash.SplashActivity
+import com.lyhoangvinh.simple.ui.features.MainActivity
+import com.lyhoangvinh.simple.ui.features.splash.SplashFragment
 import dagger.hilt.android.HiltAndroidApp
 import kotlin.system.exitProcess
 
@@ -26,7 +28,8 @@ class MyApplication : Application() {
         instance = this
 
         val displayMetrics = DisplayMetrics()
-        val windowManager = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val windowManager =
+            applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         windowManager.defaultDisplay?.getMetrics(displayMetrics)
         mDeviceWidth = displayMetrics.widthPixels
         handleUncaughtException()
@@ -53,7 +56,7 @@ class MyApplication : Application() {
 
             Thread.sleep(2000)
 
-            val intent = Intent(this, SplashActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             // to custom behaviour, add extra params for intent
             intent.addFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP

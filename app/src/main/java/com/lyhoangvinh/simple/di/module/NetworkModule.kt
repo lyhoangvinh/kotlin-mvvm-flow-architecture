@@ -1,11 +1,9 @@
 package com.lyhoangvinh.simple.di.module
 
 import com.google.gson.Gson
-import com.lyhoangvinh.simple.Constants
-import com.lyhoangvinh.simple.MyApplication
+import com.lyhoangvinh.simple.utils.Constants
 import com.lyhoangvinh.simple.data.services.AvgleService
 import com.lyhoangvinh.simple.data.services.ComicVineService
-import com.lyhoangvinh.simple.di.qualifier.ApplicationContext
 import com.lyhoangvinh.simple.di.qualifier.OkHttpNoAuth
 import com.lyhoangvinh.simple.utils.extension.makeOkHttpClientBuilder
 import com.lyhoangvinh.simple.utils.extension.makeService
@@ -16,14 +14,14 @@ import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
 @Module
-class NetworkModule {
+@InstallIn(ApplicationComponent::class)
+object NetworkModule {
 
     @Provides
     @OkHttpNoAuth
     @Singleton
-    internal fun provideOkHttpClientNoAuth(@ApplicationContext context: MyApplication): OkHttpClient = makeOkHttpClientBuilder(context).build()
+    internal fun provideOkHttpClientNoAuth(): OkHttpClient = makeOkHttpClientBuilder().build()
 
     @Provides
     @Singleton

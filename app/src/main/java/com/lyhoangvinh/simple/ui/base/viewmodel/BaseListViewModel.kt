@@ -4,11 +4,9 @@ import androidx.annotation.CallSuper
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
-import com.lyhoangvinh.simple.data.entities.DataEmpty
-import com.lyhoangvinh.simple.utils.SafeMutableLiveData
 
 
-abstract class BasePagingViewModel<A : RecyclerView.Adapter<*>> : BaseViewModel() {
+abstract class BaseListViewModel<A : RecyclerView.Adapter<*>> : BaseViewModel() {
 
     @Nullable
     lateinit var adapter: A

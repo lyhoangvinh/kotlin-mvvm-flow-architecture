@@ -21,7 +21,7 @@ object BindingUtils {
     @JvmStatic
     @BindingAdapter("loadImageURL")
     fun loadImageURL(imageView: ImageView, url: String?) {
-        imageView.loadImage(url!!)
+        imageView.loadImage(url.orEmpty())
     }
 
     @JvmStatic
