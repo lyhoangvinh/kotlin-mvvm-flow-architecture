@@ -89,4 +89,6 @@ ext {
     lifecycle_version = '2.2.0'
 
     navigationVersion = '2.3.0'
+
+    sandwichVersion = '1.0.4'
 }

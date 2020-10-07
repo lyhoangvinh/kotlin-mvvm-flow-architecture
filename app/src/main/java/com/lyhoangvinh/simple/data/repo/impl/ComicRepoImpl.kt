@@ -21,4 +21,8 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
             pagingSourceFactory = { ComicSource(comicVineService) }
         ).flow
     }
+
+    suspend fun getData2() {
+
+    }
 }

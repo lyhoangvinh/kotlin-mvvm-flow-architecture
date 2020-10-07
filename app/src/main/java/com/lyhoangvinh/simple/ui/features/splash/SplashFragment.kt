@@ -12,7 +12,6 @@ import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewModel>() {
-
     override val viewModel: SplashViewModel by viewModels()
     override fun getLayoutResource() = R.layout.fragment_splash
     override fun initialize(view: View, ctx: Context?) {
@@ -21,5 +20,4 @@ class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewMo
             getNavController()?.navigate(SplashFragmentDirections.toComic())
         }
     }
-
 }

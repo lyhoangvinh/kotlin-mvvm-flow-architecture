@@ -94,6 +94,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
 
+    implementation "com.github.skydoves:sandwich:$rootProject.ext.sandwichVersion"
 
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"

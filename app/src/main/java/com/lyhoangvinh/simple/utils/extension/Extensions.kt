@@ -1,12 +1,12 @@
 package com.lyhoangvinh.simple.utils.extension
 
 import android.content.Context
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
+import com.lyhoangvinh.simple.data.network.Resource
+import com.lyhoangvinh.simple.data.network.Status
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -117,3 +117,27 @@ fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observ
     })
 }
 
+
+/**
+ * The database serves as the single source of truth.
+ * Therefore UI can receive data updates from database only.
+ * Function notify UI about:
+ * [Status.SUCCESS] - with data from database
+ * [Status.ERROR] - if error has occurred from any source
+ * [Status.LOADING]
+ */
+fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
+                          networkCall: suspend () -> Resource<A>,
+                          saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
+    liveData(Dispatchers.IO) {
+        emit(Resource.loading())
+        val source = databaseQuery.invoke().map { Resource.success(it) }
+        emitSource(source)
+        val responseStatus = networkCall.invoke()
+        if (responseStatus.status == Status.SUCCESS) {
+            saveCallResult(responseStatus.data!!)
+        } else if (responseStatus.status == Status.ERROR) {
+            emit(Resource.error(responseStatus.message.orEmpty()))
+            emitSource(source)
+        }
+    }
