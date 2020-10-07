@@ -22,7 +22,7 @@ class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRe
         lifecycleOwner.lifecycleScope.launch {
             comicRepo.getData().cachedIn(viewModelScope)
                 .collectLatest {
-                adapter.submitData(lifecycleOwner.lifecycle, it)
+                adapter.submitData(it)
             }
         }
     }
