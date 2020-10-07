@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        android:background="@color/colorText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorText"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="top"
             android:src="@drawable/kotlin_logo" />
-    </FrameLayout>
+
+        <Button
+            android:id="@+id/btnRcv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rcv"
+            android:textColor="@color/colorText" />
+
+        <Button
+            android:id="@+id/btnGetApi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Api"
+            android:textColor="@color/colorText" />
+    </LinearLayout>
 </layout>

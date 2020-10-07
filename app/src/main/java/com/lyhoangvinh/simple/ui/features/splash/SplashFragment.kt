@@ -15,8 +15,10 @@ class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewMo
     override val viewModel: SplashViewModel by viewModels()
     override fun getLayoutResource() = R.layout.fragment_splash
     override fun initialize(view: View, ctx: Context?) {
-        lifecycleScope.launch(Dispatchers.Main) {
-            delay(300L)
+        binding.btnGetApi.setOnClickListener {
+            getNavController()?.navigate(SplashFragmentDirections.toComic2())
+        }
+        binding.btnRcv.setOnClickListener {
             getNavController()?.navigate(SplashFragmentDirections.toComic())
         }
     }

@@ -1,6 +1,7 @@
-package com.lyhoangvinh.simple.data.network
+package com.lyhoangvinh.simple.data.source
 
 import android.util.Log
+import com.lyhoangvinh.simple.data.network.Resource
 import retrofit2.Response
 
 
@@ -14,7 +15,9 @@ abstract class BaseDataSource {
             val response = call()
             if (response.isSuccessful) {
                 val body = response.body()
-                if (body != null) return Resource.success(body)
+                if (body != null) return Resource.success(
+                    body
+                )
             }
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception) {
