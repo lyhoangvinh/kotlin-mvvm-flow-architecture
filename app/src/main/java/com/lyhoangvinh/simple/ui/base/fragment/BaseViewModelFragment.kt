@@ -35,9 +35,9 @@ abstract class BaseViewModelFragment<B : ViewDataBinding, VM : BaseViewModel> : 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initialize(view, activity)
         viewModel.onCreate(this, getFragmentArguments())
         viewModel.stateLiveData.observe(viewLifecycleOwner, Observer { handleState(it) })
-        initialize(view, activity)
     }
 
     protected abstract fun initialize(view: View, ctx: Context?)
