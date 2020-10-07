@@ -107,7 +107,7 @@ fun Activity.createDialog(): Dialog? {
     val progressDialog = Dialog(this)
     progressDialog.let {
         it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        it.setContentView(R.layout.progress_dialog)
+        it.setContentView(R.layout.progress_dialog)
         it.setCancelable(false)
         it.setCanceledOnTouchOutside(false)
         return it
