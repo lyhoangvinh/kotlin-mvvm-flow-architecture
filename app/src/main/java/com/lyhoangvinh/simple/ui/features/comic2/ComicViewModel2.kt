@@ -8,7 +8,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
 import com.lyhoangvinh.simple.utils.extension.observe
@@ -18,7 +17,7 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
         lifecycleOwner.lifecycleScope.launchWhenCreated {
-            launchOnViewModelScope { comicRepo.getDataSanwit() }.observe(lifecycleOwner) {
+            launchOnViewModelScope { comicRepo.getDataSandwich() }.observe(lifecycleOwner) {
                 publishState(it.state)
                 if (it.state == State.success()) comicObservable.notifyContent(it.toString())
             }
