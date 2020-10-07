@@ -102,13 +102,11 @@ dependencies {
     //room
     implementation "androidx.room:room-runtime:$rootProject.ext.roomDatabaseVersion"
     kapt "androidx.room:room-compiler:$rootProject.ext.roomDatabaseVersion"
-    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomDatabaseVersion"
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitConverterScalars"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpLoggingInterceptorVersion"
 
@@ -126,9 +124,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$rootProject.ext.pagingVersion"
     // alternatively - without Android dependencies for testing
     testImplementation "androidx.paging:paging-common:$rootProject.ext.pagingVersion"
-    // optional - RxJava support
-    implementation "androidx.paging:paging-rxjava2:$rootProject.ext.pagingVersion" // For Kotlin use paging-rxjava2-ktx
-
+  
     // navigation
     // https://developer.android.com/jetpack/androidx/releases/navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.ext.navigationVersion"

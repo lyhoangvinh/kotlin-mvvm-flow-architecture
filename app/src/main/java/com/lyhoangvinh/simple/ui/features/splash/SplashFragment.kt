@@ -12,20 +12,14 @@ import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewModel>() {
-    private val activityScope = CoroutineScope(Dispatchers.Main)
+
     override val viewModel: SplashViewModel by viewModels()
     override fun getLayoutResource() = R.layout.fragment_splash
-    override fun initialize(view: View, ctx: Context?) {}
-    override fun onStart() {
-        super.onStart()
-        activityScope.launch {
-            delay(1000L)
+    override fun initialize(view: View, ctx: Context?) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            delay(300L)
             getNavController()?.navigate(SplashFragmentDirections.toComic())
         }
     }
 
-    override fun onStop() {
-        activityScope.cancel()
-        super.onStop()
-    }
 }

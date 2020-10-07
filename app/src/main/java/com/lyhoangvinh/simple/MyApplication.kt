@@ -8,7 +8,9 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.Toast
 import com.lyhoangvinh.simple.ui.features.MainActivity
+import com.lyhoangvinh.simple.ui.features.error.ErrorActivity
 import com.lyhoangvinh.simple.ui.features.splash.SplashFragment
+import com.lyhoangvinh.simple.utils.Constants
 import dagger.hilt.android.HiltAndroidApp
 import kotlin.system.exitProcess
 
@@ -32,7 +34,7 @@ class MyApplication : Application() {
             applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         windowManager.defaultDisplay?.getMetrics(displayMetrics)
         mDeviceWidth = displayMetrics.widthPixels
-        handleUncaughtException()
+//        handleUncaughtException()
     }
 
     fun getDeviceWidth(): Int {
@@ -44,11 +46,13 @@ class MyApplication : Application() {
      * restart app for better UX
      */
     private fun handleUncaughtException() {
+        var error = ""
         Thread.setDefaultUncaughtExceptionHandler { t, e ->
             object : Thread() {
                 override fun run() {
                     Looper.prepare()
-                    Toast.makeText(applicationContext, R.string.unknown_error, Toast.LENGTH_SHORT)
+                    error = "${R.string.unknown_error} ${e.message}"
+                    Toast.makeText(applicationContext, error, Toast.LENGTH_SHORT)
                         .show()
                     Looper.loop()
                 }
@@ -56,13 +60,14 @@ class MyApplication : Application() {
 
             Thread.sleep(2000)
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ErrorActivity::class.java)
             // to custom behaviour, add extra params for intent
             intent.addFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
                         or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         or Intent.FLAG_ACTIVITY_NEW_TASK
             )
+            intent.putExtra(Constants.EXTRA_DATA, error)
             startActivity(intent)
             try {
                 exitProcess(2);

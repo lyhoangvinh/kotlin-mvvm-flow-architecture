@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.lyhoangvinh.simple.ui.features.comic.ComicViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -27,7 +24,7 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_comics"
-                tools:orientation="vertical" />
+                android:orientation="vertical" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -40,8 +40,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
             binding.apply {
 //                setVariable(BR.viewModel, viewModel)
                 root.isClickable = true
-                executePendingBindings()
-            }
+             }
         }
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root

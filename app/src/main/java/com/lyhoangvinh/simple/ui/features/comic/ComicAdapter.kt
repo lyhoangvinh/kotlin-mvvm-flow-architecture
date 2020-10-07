@@ -12,8 +12,7 @@ import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
-class ComicAdapter @Inject constructor(@ActivityContext context: Context) :
-    BasePagedAdapter<Issues, ItemComicsBinding>(context, object : DiffUtil.ItemCallback<Issues>() {
+class ComicAdapter @Inject constructor() : BasePagedAdapter<Issues, ItemComicsBinding>(object : DiffUtil.ItemCallback<Issues>() {
         override fun areItemsTheSame(currentItem: Issues, nextItem: Issues): Boolean { return currentItem.id == nextItem.id }
         override fun areContentsTheSame(currentItem: Issues, nextItem: Issues): Boolean { return currentItem == nextItem }
     }) {

@@ -62,10 +62,10 @@ ext {
 
     eventbusVersion = '3.1.1'
 
-    retrofitVersion = '2.4.0'
-    retrofitConverterScalars = '2.1.0'
-    okhttpVersion = '3.10.0'
-    okhttpLoggingInterceptorVersion = '3.9.1'
+    retrofitVersion = '2.9.0'
+    retrofitConverterScalars = '2.3.0'
+    okhttpVersion = '4.7.2'
+    okhttpLoggingInterceptorVersion = '4.7.2'
 
     picassoVersion = '2.71828'
 

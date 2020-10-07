@@ -62,6 +62,10 @@ fun ViewGroup.inflate(@ActivityContext context:Context, @LayoutRes layout: Int, 
     return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
 }
 
+fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
+}
+
 fun ImageView.loadImage(url: String) {
     if (url.isEmpty()) {
         Picasso.get()

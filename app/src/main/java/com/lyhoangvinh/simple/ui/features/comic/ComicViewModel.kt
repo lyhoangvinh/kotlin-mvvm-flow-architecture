@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -16,7 +17,7 @@ class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRe
     }
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
-        lifecycleOwner.lifecycleScope.launch {
+        lifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             comicRepo.getData().collectLatest {
                 adapter.submitData(it)
             }

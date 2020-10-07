@@ -40,8 +40,8 @@ class ErrorEntity {
                 } else {
                     // get the body fail
                     val baseResponse = httpException.response()
-                    e.setHttpCode(baseResponse.code())
-                    if (!baseResponse.isSuccessful && baseResponse.errorBody() != null) {
+                    e.setHttpCode(baseResponse?.code()?:0)
+                    if (baseResponse?.isSuccessful == false && baseResponse.errorBody() != null) {
                         try {
                             val jObjError = JSONObject(baseResponse.errorBody()?.string()!!)
                             e.setMessage(jObjError.getString("message"))

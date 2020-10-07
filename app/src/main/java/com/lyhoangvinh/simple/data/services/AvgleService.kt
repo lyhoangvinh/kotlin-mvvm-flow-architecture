@@ -1,15 +1,6 @@
 package com.lyhoangvinh.simple.data.services
 
 
-import com.lyhoangvinh.simple.data.response.BaseResponseAvgle
-import com.lyhoangvinh.simple.data.response.CategoriesResponse
-import com.lyhoangvinh.simple.data.response.CollectionsResponseAvgle
-import com.lyhoangvinh.simple.data.response.VideosResponseAvgle
-import io.reactivex.Single
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface AvgleService {
 
