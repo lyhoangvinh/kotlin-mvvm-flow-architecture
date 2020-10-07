@@ -19,7 +19,7 @@ class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRe
     }
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
-        lifecycleOwner.lifecycleScope.launch {
+        lifecycleOwner.lifecycleScope.launchWhenCreated {
             comicRepo.getData().cachedIn(viewModelScope)
                 .collectLatest {
                 adapter.submitData(it)
