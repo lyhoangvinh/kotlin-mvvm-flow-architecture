@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.lyhoangvinh.simple.data.entities.comic.Issues
-import com.lyhoangvinh.simple.data.network.Resource
+import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import com.lyhoangvinh.simple.data.services.ComicVineService
@@ -35,7 +35,8 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
     override suspend fun getData2(): Resource<BaseResponseComic<Issues>> = comicSource2.fetchData()
 
     override suspend fun getDataSanwit(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
-        val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())
+        val liveData = MutableLiveData<Resource<List<Issues>>>(
+            Resource.loading())
         delay(100L)
         comicVineService.getIssues3(20, 1, Constants.KEY, "json", "cover_date: desc").request { response ->
             response.onSuccess {

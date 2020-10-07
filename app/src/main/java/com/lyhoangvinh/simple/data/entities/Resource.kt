@@ -1,7 +1,4 @@
-package com.lyhoangvinh.simple.data.network
-
-import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.entities.Status
+package com.lyhoangvinh.simple.data.entities
 
 /**
  * A generic class that holds a value with its loading status.

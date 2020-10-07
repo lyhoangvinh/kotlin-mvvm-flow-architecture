@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
 import com.lyhoangvinh.simple.data.entities.Status
-import com.lyhoangvinh.simple.data.network.Resource
+import com.lyhoangvinh.simple.data.entities.Resource
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody

@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +20,8 @@ class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRe
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
         lifecycleOwner.lifecycleScope.launch {
-            comicRepo.getData().collectLatest {
+            comicRepo.getData().cachedIn(viewModelScope)
+                .collectLatest {
                 adapter.submitData(lifecycleOwner.lifecycle, it)
             }
         }

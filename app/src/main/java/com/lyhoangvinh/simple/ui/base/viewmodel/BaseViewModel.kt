@@ -6,7 +6,6 @@ import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.network.Resource
 import com.lyhoangvinh.simple.utils.SafeMutableLiveData
 import kotlinx.coroutines.Dispatchers
 

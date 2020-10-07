@@ -1,7 +1,7 @@
 package com.lyhoangvinh.simple.data.source
 
 import android.util.Log
-import com.lyhoangvinh.simple.data.network.Resource
+import com.lyhoangvinh.simple.data.entities.Resource
 import retrofit2.Response
 
 

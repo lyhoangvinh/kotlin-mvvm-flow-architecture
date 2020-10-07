@@ -3,7 +3,7 @@ package com.lyhoangvinh.simple.data.repo
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.lyhoangvinh.simple.data.entities.comic.Issues
-import com.lyhoangvinh.simple.data.network.Resource
+import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import kotlinx.coroutines.flow.Flow
 
