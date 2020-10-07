@@ -84,4 +84,8 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
             null
         }
     }
+
+    fun navigateUp() {
+        getNavController()?.navigateUp()
+    }
 }
