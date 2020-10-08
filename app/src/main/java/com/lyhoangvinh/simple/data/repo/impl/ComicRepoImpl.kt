@@ -35,16 +35,14 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
     override suspend fun getData2(): Resource<BaseResponseComic<Issues>> = comicSource2.fetchData()
 
     override suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
-        val liveData = MutableLiveData<Resource<List<Issues>>>(
-            Resource.loading())
-        delay(100L)
+        val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())
         comicVineService.getIssues3(20, 1, Constants.KEY, "json", "cover_date: desc").request { response ->
             response.onSuccess {
                 liveData.postValue(Resource.success(data?.results.orEmpty()))
             }.onError {
-                error(message())
+                liveData.postValue(Resource.error(message()))
             }.onException {
-                error(message())
+                liveData.postValue(Resource.error(message()))
             }
         }
         liveData
