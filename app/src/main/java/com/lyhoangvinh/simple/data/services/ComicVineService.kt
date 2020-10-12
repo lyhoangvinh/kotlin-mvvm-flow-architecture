@@ -1,4 +1,6 @@
 package com.lyhoangvinh.simple.data.services
+import androidx.lifecycle.LiveData
+import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.comic.Issues
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import retrofit2.Call
@@ -31,4 +33,12 @@ interface ComicVineService {
         , @Query("sort") sort: String
     ):
             Call<BaseResponseComic<Issues>>
+
+    @GET("issues")
+    fun getIssues4(
+        @Query("limit") limit: Int, @Query("offset") offset: Int
+        , @Query("api_key") api_key: String, @Query("format") format: String
+        , @Query("sort") sort: String
+    ):
+            LiveData<Resource<BaseResponseComic<Issues>>>
 }

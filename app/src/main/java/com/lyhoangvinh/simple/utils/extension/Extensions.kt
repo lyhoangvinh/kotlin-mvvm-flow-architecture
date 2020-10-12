@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
 import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.data.entities.Resource
+import com.lyhoangvinh.simple.utils.livedata.LiveDataCallAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -44,9 +45,8 @@ fun <T> makeService(
     val retrofit = Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
-//        .addConverterFactory(ServiceResponseConverter(gson))
         .addConverterFactory(GsonConverterFactory.create())
-
+        .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
     return retrofit.create(serviceClass)
 }
@@ -152,3 +152,4 @@ fun <T> resultLiveData(networkCall: suspend () -> Resource<T>): LiveData<Resourc
             emit(Resource.error(responseStatus.message.orEmpty()))
         }
     }
+

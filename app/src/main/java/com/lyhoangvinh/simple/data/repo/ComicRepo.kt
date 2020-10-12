@@ -12,4 +12,6 @@ interface ComicRepo {
     suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>>
     suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>>
     suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>
+    suspend fun getData4(): LiveData<Resource<BaseResponseComic<Issues>>>
+
 }
