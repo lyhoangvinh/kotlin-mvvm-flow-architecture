@@ -2,6 +2,7 @@ package com.lyhoangvinh.simple.data.repo.impl
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asFlow
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -13,15 +14,18 @@ import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.data.source.ComicSource
 import com.lyhoangvinh.simple.data.source.ComicSource2
 import com.lyhoangvinh.simple.utils.Constants
+import com.lyhoangvinh.simple.utils.extension.resultLiveData
 import com.skydoves.sandwich.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.asFlow
 import javax.inject.Inject
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineService, private val comicSource2: ComicSource2) : ComicRepo {
-    override fun getData(): Flow<PagingData<Issues>> {
+    override suspend fun getData(): Flow<PagingData<Issues>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -32,7 +36,9 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
         ).flow
     }
 
-    override suspend fun getData2(): Resource<BaseResponseComic<Issues>> = comicSource2.fetchData()
+    override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData() }.asFlow()
+
+    override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData() }
 
     override suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
         val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())

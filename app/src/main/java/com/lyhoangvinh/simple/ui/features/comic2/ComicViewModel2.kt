@@ -11,15 +11,24 @@ import com.lyhoangvinh.simple.data.entities.State
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
 import com.lyhoangvinh.simple.utils.extension.observe
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicRepo, val comicObservable: ComicObservable) : BaseViewModel() {
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
         lifecycleOwner.lifecycleScope.launchWhenCreated {
-            launchOnViewModelScope { comicRepo.getDataSandwich() }.observe(lifecycleOwner) {
+//            launchOnViewModelScope { comicRepo.getDataSandwich() }.observe(lifecycleOwner) {
+//                publishState(it.state)
+//                if (it.state == State.success()) comicObservable.notifyContent(it.toString())
+//            }
+//            comicRepo.getData2().collect {
+//                publishState(it.state)
+//                comicObservable.notifyContent(it.toString())
+//            }
+            comicRepo.getData3().observe(lifecycleOwner) {
                 publishState(it.state)
-                if (it.state == State.success()) comicObservable.notifyContent(it.toString())
+                comicObservable.notifyContent(it.toString())
             }
         }
     }

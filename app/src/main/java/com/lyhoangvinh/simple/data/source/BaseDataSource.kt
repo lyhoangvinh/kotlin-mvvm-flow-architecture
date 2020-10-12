@@ -30,5 +30,6 @@ abstract class BaseDataSource {
         return Resource.error("Network call has failed for a following reason: $message")
     }
 
+
 }
 

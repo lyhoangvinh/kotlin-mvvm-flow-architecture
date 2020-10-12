@@ -8,7 +8,8 @@ import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import kotlinx.coroutines.flow.Flow
 
 interface ComicRepo {
-    fun getData() : Flow<PagingData<Issues>>
-    suspend fun getData2(): Resource<BaseResponseComic<Issues>>
+    suspend fun getData() : Flow<PagingData<Issues>>
+    suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>>
+    suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>>
     suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>
 }
