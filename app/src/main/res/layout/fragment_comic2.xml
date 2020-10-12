@@ -10,16 +10,22 @@
             type="com.lyhoangvinh.simple.ui.features.comic2.ComicViewModel2" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> vm.onReSet()}" />
 
         <TextView
-            tools:text="salhfdasdj;asldk;asjsl;adjf;sdjfasd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@{vm.comicObservable.content}"
-            android:textColor="@color/colorText" />
-    </FrameLayout>
+            android:textColor="@color/colorText"
+            tools:text="salhfdasdj;asldk;asjsl;adjf;sdjfasd" />
+    </LinearLayout>
 
 </layout>

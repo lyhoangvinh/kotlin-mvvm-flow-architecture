@@ -14,6 +14,7 @@ import com.lyhoangvinh.simple.data.source.ComicSource
 import com.lyhoangvinh.simple.data.source.ComicSource2
 import com.lyhoangvinh.simple.utils.Constants
 import com.lyhoangvinh.simple.utils.extension.resultLiveData
+import com.lyhoangvinh.simple.utils.livedata.RefreshableLiveData
 import com.skydoves.sandwich.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -53,7 +54,10 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
         liveData
     }
 
-    override suspend fun getData4(): LiveData<Resource<BaseResponseComic<Issues>>> = withContext(Dispatchers.IO) {
-        comicVineService.getIssues4(20, 3, Constants.KEY, "json", "cover_date: desc")
-    }
+    private val comicLiveData = RefreshableLiveData { comicVineService.getIssues4(20, 3, Constants.KEY, "json", "cover_date: desc") }
+
+    override fun getData4(): LiveData<Resource<BaseResponseComic<Issues>>> = comicLiveData
+
+    override fun refresh() = comicLiveData.refresh()
+
 }

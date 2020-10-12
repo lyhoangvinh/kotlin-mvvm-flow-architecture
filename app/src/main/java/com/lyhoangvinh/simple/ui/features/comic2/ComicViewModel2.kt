@@ -33,6 +33,10 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
         }
     }
 
+    fun onReSet() {
+        comicRepo.refresh()
+    }
+
     class ComicObservable @Inject constructor() : BaseObservable() {
 
         @Bindable

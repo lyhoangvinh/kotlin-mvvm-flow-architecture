@@ -2,7 +2,6 @@ package com.lyhoangvinh.simple.utils.livedata
 
 import androidx.lifecycle.LiveData
 import com.lyhoangvinh.simple.data.entities.Resource
-import com.skydoves.sandwich.*
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback

@@ -1,4 +1,4 @@
-package com.lyhoangvinh.simple.utils
+package com.lyhoangvinh.simple.utils.livedata
 
 import androidx.lifecycle.LiveData
 import android.content.Context
