@@ -2,6 +2,7 @@ package com.lyhoangvinh.simple.utils.livedata
 
 import androidx.lifecycle.LiveData
 import com.lyhoangvinh.simple.data.entities.Resource
+import com.skydoves.sandwich.*
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
@@ -29,7 +30,17 @@ class LiveDataCallAdapter<R>(private val responseType: Type): CallAdapter<R, Liv
 
             private fun enqueue() {
                 postValue(Resource.loading())
-                call.enqueue(object : Callback<R> {
+//                call.request { response ->
+//                    response.onSuccess {
+//                        postValue(Resource.success(data))
+//                        isSuccess = true
+//                    }.onError {
+//                        postValue(Resource.error(message()))
+//                    }.onException {
+//                        postValue(Resource.error(message()))
+//                    }
+//                }
+                call.clone().enqueue(object : Callback<R> {
                     override fun onFailure(call: Call<R>, t: Throwable) {
                         //todo: ErrorEntity
                         postValue(Resource.error(t.message))
