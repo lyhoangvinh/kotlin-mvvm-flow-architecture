@@ -23,8 +23,7 @@ interface ComicVineService {
         @Query("limit") limit: Int, @Query("offset") offset: Int
         , @Query("api_key") api_key: String, @Query("format") format: String
         , @Query("sort") sort: String
-    ):
-            Response<BaseResponseComic<Issues>>
+    ): Response<BaseResponseComic<Issues>>
 
     @GET("issues")
     fun getIssues3(

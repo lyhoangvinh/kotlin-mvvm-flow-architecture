@@ -20,6 +20,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import retrofit2.Response
 import javax.inject.Inject
 
 @FlowPreview
@@ -56,8 +57,9 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
 
     private val comicLiveData = RefreshableLiveData { comicVineService.getIssues4(20, 3, Constants.KEY, "json", "cover_date: desc") }
 
-    override fun getData4(): LiveData<Resource<BaseResponseComic<Issues>>> = comicLiveData
+    override suspend fun getData4(): LiveData<Resource<BaseResponseComic<Issues>>> = comicLiveData
 
     override fun refresh() = comicLiveData.refresh()
 
+    override suspend fun getData5(): Response<BaseResponseComic<Issues>> = comicVineService.getIssues2(20, 1, Constants.KEY, "json", "cover_date: desc")
 }

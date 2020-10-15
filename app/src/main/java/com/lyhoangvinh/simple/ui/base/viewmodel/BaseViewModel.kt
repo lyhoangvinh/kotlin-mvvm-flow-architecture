@@ -5,7 +5,9 @@ import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
+import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.State
+import com.lyhoangvinh.simple.utils.extension.observe
 import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
 import kotlinx.coroutines.Dispatchers
 
@@ -59,5 +61,12 @@ abstract class BaseViewModel : ViewModel() {
     @MainThread
     protected fun publishState(state: State) {
         stateLiveData.setValue(state)
+    }
+
+    fun <T> LiveData<Resource<T>>?.withState(viewLifecycleOwner: LifecycleOwner, callBack: (data: T?) -> Unit) {
+        this.observe(viewLifecycleOwner) {
+            publishState(it.state)
+            if (it.state == State.success()) callBack.invoke(it.data)
+        }
     }
 }

@@ -45,7 +45,7 @@ fun <T> makeService(
     val retrofit = Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(ServiceResponseConverter(gson))
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
     return retrofit.create(serviceClass)
