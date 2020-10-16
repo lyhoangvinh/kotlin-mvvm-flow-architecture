@@ -26,7 +26,7 @@ class RefreshableLiveData<T>(
 }
 
 
-abstract class RefreshableLiveData2<T>: MediatorLiveData<T>() {
+abstract class ApiLiveData<T>: MediatorLiveData<T>() {
 
     private var source: (() -> LiveData<T>)?=null
 

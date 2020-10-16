@@ -31,19 +31,19 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
 //                publishState(it.state)
 //                comicObservable.notifyContent(it.toString())
 //            }
-            comicRepo.getData4().withState2(lifecycleOwner) {
-                comicObservable.notifyContent(it.toString())
-            }
+//            comicRepo.getData4().withState2(lifecycleOwner) {
+//                comicObservable.notifyContent(it.toString())
+//            }
 
         }
-//        viewModelScope.launch {
-//            try {
-//                val data = comicRepo.getData5()
-//                comicObservable.notifyContent(data.body().toString())
-//            }catch (ex: Exception) {
-//                comicObservable.notifyContent(ex.message.toString())
-//            }
-//        }
+        viewModelScope.launch {
+            try {
+                val data = comicRepo.getData5()
+                comicObservable.notifyContent(data.body().toString())
+            }catch (ex: Exception) {
+                comicObservable.notifyContent(ex.message.toString())
+            }
+        }
     }
 
     fun onReSet() {

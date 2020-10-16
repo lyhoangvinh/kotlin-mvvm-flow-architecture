@@ -1,9 +1,8 @@
 package com.lyhoangvinh.simple.data.services
-import androidx.lifecycle.LiveData
 import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.comic.Issues
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
-import com.lyhoangvinh.simple.utils.livedata.RefreshableLiveData2
+import com.lyhoangvinh.simple.utils.livedata.ApiLiveData
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -40,5 +39,5 @@ interface ComicVineService {
         , @Query("api_key") api_key: String, @Query("format") format: String
         , @Query("sort") sort: String
     ):
-            RefreshableLiveData2<Resource<BaseResponseComic<Issues>>>
+            ApiLiveData<Resource<BaseResponseComic<Issues>>>
 }

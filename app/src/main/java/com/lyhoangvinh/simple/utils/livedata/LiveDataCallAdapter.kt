@@ -9,15 +9,15 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Type
 
-class LiveDataCallAdapter<R>(private val responseType: Type): CallAdapter<R, RefreshableLiveData2<Resource<R>>> {
-    override fun adapt(call: Call<R>): RefreshableLiveData2<Resource<R>> {
-        return object : RefreshableLiveData2<Resource<R>>() {
+class LiveDataCallAdapter<R>(private val responseType: Type): CallAdapter<R, ApiLiveData<Resource<R>>> {
+    override fun adapt(call: Call<R>): ApiLiveData<Resource<R>> {
+        return object : ApiLiveData<Resource<R>>() {
             private var isSuccess = false
 
             override fun onActive() {
                 super.onActive()
                 if (!isSuccess){
-                    setSource{enqueue()}
+                    setSource{ enqueue() }
                 }
             }
 

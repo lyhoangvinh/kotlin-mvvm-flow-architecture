@@ -1,6 +1,5 @@
 package com.lyhoangvinh.simple.utils.livedata
 
-import androidx.lifecycle.LiveData
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
@@ -10,7 +9,7 @@ class LiveDataCallAdapterFactory: CallAdapter.Factory() {
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
         val rawType = getRawType(returnType)
 //        val isLiveData = rawType == LiveData::class.java
-        val isRefreshableLiveData = rawType == RefreshableLiveData2::class.java
+        val isRefreshableLiveData = rawType == ApiLiveData::class.java
         return if (isRefreshableLiveData) {
             val observableType = getParameterUpperBound(0, returnType as ParameterizedType) as? ParameterizedType
                 ?: throw IllegalArgumentException("resource must be parameterized")
