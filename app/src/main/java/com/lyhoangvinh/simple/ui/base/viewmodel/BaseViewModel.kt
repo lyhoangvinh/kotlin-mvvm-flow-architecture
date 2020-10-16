@@ -69,4 +69,11 @@ abstract class BaseViewModel : ViewModel() {
             if (it.state == State.success()) callBack.invoke(it.data)
         }
     }
+
+    fun <T> LiveData<Resource<T>>?.withState2(viewLifecycleOwner: LifecycleOwner, callBack: (data: T?) -> Unit) {
+        this.observe(viewLifecycleOwner) {
+            publishState(it.state)
+            callBack.invoke(it.data)
+        }
+    }
 }

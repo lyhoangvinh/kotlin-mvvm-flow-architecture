@@ -9,8 +9,9 @@ import java.lang.reflect.Type
 class LiveDataCallAdapterFactory: CallAdapter.Factory() {
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
         val rawType = getRawType(returnType)
-        val isLiveData = rawType == LiveData::class.java
-        return if (isLiveData) {
+//        val isLiveData = rawType == LiveData::class.java
+        val isRefreshableLiveData = rawType == RefreshableLiveData2::class.java
+        return if (isRefreshableLiveData) {
             val observableType = getParameterUpperBound(0, returnType as ParameterizedType) as? ParameterizedType
                 ?: throw IllegalArgumentException("resource must be parameterized")
             LiveDataCallAdapter<Any>(getParameterUpperBound(0, observableType))
