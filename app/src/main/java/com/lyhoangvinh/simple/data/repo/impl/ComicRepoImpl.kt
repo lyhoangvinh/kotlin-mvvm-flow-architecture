@@ -6,21 +6,15 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.lyhoangvinh.simple.data.entities.comic.Issues
 import com.lyhoangvinh.simple.data.entities.Resource
-import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.data.source.ComicSource
 import com.lyhoangvinh.simple.data.source.ComicSource2
 import com.lyhoangvinh.simple.utils.Constants
-import com.lyhoangvinh.simple.utils.extension.resultFlow
-import com.lyhoangvinh.simple.utils.extension.resultLiveData
-import com.lyhoangvinh.simple.utils.livedata.RefreshableLiveData
 import com.skydoves.sandwich.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
 import retrofit2.Response
 import javax.inject.Inject
 
