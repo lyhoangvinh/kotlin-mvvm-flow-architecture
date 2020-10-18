@@ -76,8 +76,7 @@ abstract class BaseDataSource {
             emit(Resource.loading())
             val responseStatus = getResource { call.invoke() }
             if (responseStatus.status == Status.SUCCESS) {
-                val data = mapCallResult.invoke(responseStatus.data)
-                emit(Resource.success(data))
+                emit(Resource.success(mapCallResult.invoke(responseStatus.data)))
             } else if (responseStatus.status == Status.ERROR) {
                 emit(Resource.error(responseStatus.message.orEmpty()))
             }
