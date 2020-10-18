@@ -70,5 +70,19 @@ abstract class BaseDataSource {
                 emit(Resource.error(responseStatus.message.orEmpty()))
             }
         }
+
+    protected suspend fun <T> resultFlowMapper(call: suspend () -> Response<T>, mapCallResult: suspend (T?) -> List<ItemViewModel>): Flow<Resource<List<ItemViewModel>>> =
+        flow {
+            emit(Resource.loading())
+            val responseStatus = getResource { call.invoke() }
+            if (responseStatus.status == Status.SUCCESS) {
+                val data = mapCallResult.invoke(responseStatus.data)
+                emit(Resource.success(data))
+            } else if (responseStatus.status == Status.ERROR) {
+                emit(Resource.error(responseStatus.message.orEmpty()))
+            }
+        }
 }
+
+interface ItemViewModel
 
