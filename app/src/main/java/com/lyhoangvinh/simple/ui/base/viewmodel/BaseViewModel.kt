@@ -1,12 +1,14 @@
 package com.lyhoangvinh.simple.ui.base.viewmodel
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.State
+import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.utils.extension.observe
 import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -82,6 +84,6 @@ abstract class BaseViewModel : ViewModel() {
     suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) =
         onEach { publishState(it.state) }
            .catch { cause ->
-
+               Log.d("ERORROR X", cause.message.orEmpty())
            }.collect { onDataSuccess.invoke(it.data) }
 }

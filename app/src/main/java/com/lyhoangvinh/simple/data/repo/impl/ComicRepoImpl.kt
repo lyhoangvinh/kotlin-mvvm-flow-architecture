@@ -38,9 +38,9 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
         ).flow
     }
 
-    override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = resultFlow { comicSource2.fetchData() }
+    override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = comicSource2.fetchData()
 
-    override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData() }
+    override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData2() }
 
     override suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
         val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())
@@ -63,4 +63,5 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
     override fun refresh() = comicLiveData.refresh()
 
     override suspend fun getData5(): Response<BaseResponseComic<Issues>> = comicVineService.getIssues2(20, 1, Constants.KEY, "json", "cover_date: desc")
+
 }

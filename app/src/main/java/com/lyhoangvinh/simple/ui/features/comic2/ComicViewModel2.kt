@@ -33,6 +33,7 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
             comicRepo.getData2().execute {
                 comicObservable.notifyContent(it.toString())
             }
+
 //            comicRepo.getData4().withState2(lifecycleOwner) {
 //                comicObservable.notifyContent(it.toString())
 //            }

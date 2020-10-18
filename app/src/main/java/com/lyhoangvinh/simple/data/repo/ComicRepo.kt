@@ -18,4 +18,5 @@ interface ComicRepo {
     fun refresh()
 
     suspend fun getData5(): Response<BaseResponseComic<Issues>>
+
 }
