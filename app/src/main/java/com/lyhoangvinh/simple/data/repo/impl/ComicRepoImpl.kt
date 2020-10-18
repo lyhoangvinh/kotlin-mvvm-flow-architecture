@@ -40,7 +40,7 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
 
     override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = comicSource2.fetchData()
 
-    override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = comicSource2.fetchData2().
+    override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = comicSource2.fetchData4()
 
     override suspend fun getDataSandwich(): LiveData<Resource<List<Issues>>>  = withContext(Dispatchers.IO) {
         val liveData = MutableLiveData<Resource<List<Issues>>>(Resource.loading())
