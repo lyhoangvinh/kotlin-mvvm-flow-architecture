@@ -1,5 +1,6 @@
 package com.lyhoangvinh.simple.data.source
 
+import android.util.Log
 import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.comic.Issues
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
@@ -13,7 +14,11 @@ import javax.inject.Inject
 class ComicSource2 @Inject constructor(private val service: ComicVineService) : BaseDataSource() {
 
     suspend fun fetchData(): Flow<Resource<BaseResponseComic<Issues>>>  =
-        resultFlow { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
+        resultFlow {
+            val data = Thread.currentThread().name
+            Log.d("LOGCXCC", data)
+            service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc")
+        }.flowOn(Dispatchers.IO)
 
     suspend fun fetchData2() = getResource { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
 
