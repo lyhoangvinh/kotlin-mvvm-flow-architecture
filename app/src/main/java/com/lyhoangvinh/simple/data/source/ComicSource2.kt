@@ -19,11 +19,11 @@ class ComicSource2 @Inject constructor(private val service: ComicVineService) : 
     suspend fun fetchData3() = resultFlowMapper(call = {
         service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc")
     }, mapCallResult = {
-        if (it== null) {
+        if (it == null) {
             emptyList()
         } else {
             val item = mutableListOf<ItemViewModel>()
-
+            //Todo: map item list
             item
         }
     })
