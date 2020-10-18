@@ -46,6 +46,33 @@ abstract class BaseDataSource {
      * [Status.LOADING]
      */
 
+    fun <T> resultLiveData(networkCall: suspend () -> Response<T>): LiveData<Resource<T>> =
+        liveData(Dispatchers.IO) {
+            emit(Resource.loading())
+            val responseStatus = getResource { networkCall.invoke() }
+            if (responseStatus.status == Status.SUCCESS) {
+                emit(responseStatus)
+            } else if (responseStatus.status == Status.ERROR) {
+                emit(Resource.error(responseStatus.message.orEmpty()))
+            }
+        }
+
+    fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
+                              networkCall: suspend () -> Response<A>,
+                              saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
+        liveData(Dispatchers.IO) {
+            emit(Resource.loading())
+            val source = databaseQuery.invoke().map { Resource.success(it) }
+            emitSource(source)
+            val responseStatus = getResource { networkCall.invoke() }
+            if (responseStatus.status == Status.SUCCESS) {
+                saveCallResult(responseStatus.data!!)
+            } else if (responseStatus.status == Status.ERROR) {
+                emit(Resource.error(responseStatus.message.orEmpty()))
+                emitSource(source)
+            }
+        }
+
     protected suspend fun <T> resultFlow(call: suspend () -> Response<T>): Flow<Resource<T>> =
         flow {
             emit(Resource.loading())

@@ -120,49 +120,8 @@ fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observ
 }
 
 
-/**
- * The database serves as the single source of truth.
- * Therefore UI can receive data updates from database only.
- * Function notify UI about:
- * [Status.SUCCESS] - with data from database
- * [Status.ERROR] - if error has occurred from any source
- * [Status.LOADING]
- */
-fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
-                          networkCall: suspend () -> Resource<A>,
-                          saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
-    liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val source = databaseQuery.invoke().map { Resource.success(it) }
-        emitSource(source)
-        val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Status.SUCCESS) {
-            saveCallResult(responseStatus.data!!)
-        } else if (responseStatus.status == Status.ERROR) {
-            emit(Resource.error(responseStatus.message.orEmpty()))
-            emitSource(source)
-        }
-    }
 
 
-fun <T> resultLiveData(networkCall: suspend () -> Resource<T>): LiveData<Resource<T>> =
-    liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Status.SUCCESS) {
-            emit(responseStatus)
-        } else if (responseStatus.status == Status.ERROR) {
-            emit(Resource.error(responseStatus.message.orEmpty()))
-        }
-    }
 
-fun <T> resultFlow(networkCall: suspend () -> Resource<T>): kotlinx.coroutines.flow.Flow<Resource<T>> =
-    flow {
-        emit(Resource.loading())
-        val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Status.SUCCESS) {
-            emit(responseStatus)
-        } else if (responseStatus.status == Status.ERROR) {
-            emit(Resource.error(responseStatus.message.orEmpty()))
-        }
-    }
+
+
