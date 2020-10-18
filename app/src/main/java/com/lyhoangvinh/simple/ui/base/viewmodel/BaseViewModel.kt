@@ -84,8 +84,11 @@ abstract class BaseViewModel : ViewModel() {
     suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit, onDataError:((String)-> Unit)?=null) =
             catch { cause -> onDataError?.invoke(cause.message.orEmpty()) }.collect {
                 publishState(it.state)
-                if (it.status == Status.ERROR) onDataError?.invoke(it.message.orEmpty())
-                onDataSuccess.invoke(it.data)
+                if (it.status == Status.SUCCESS) {
+                    onDataSuccess.invoke(it.data)
+                } else if (it.status == Status.ERROR) {
+                    onDataError?.invoke(it.message.orEmpty())
+                }
             }
 
     suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) = execute(onDataSuccess, null)
