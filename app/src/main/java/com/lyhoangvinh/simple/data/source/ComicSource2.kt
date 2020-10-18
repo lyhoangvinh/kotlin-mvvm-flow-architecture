@@ -15,4 +15,16 @@ class ComicSource2 @Inject constructor(private val service: ComicVineService) : 
         resultFlow { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
 
     suspend fun fetchData2() = getResource { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
+
+    suspend fun fetchData3() = resultFlowMapper(call = {
+        service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc")
+    }, mapCallResult = {
+        if (it== null) {
+            emptyList()
+        } else {
+            val item = mutableListOf<ItemViewModel>()
+
+            item
+        }
+    })
 }
