@@ -5,7 +5,9 @@ import com.lyhoangvinh.simple.data.entities.comic.Issues
 import com.lyhoangvinh.simple.data.response.BaseResponseComic
 import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.utils.Constants
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class ComicSource2 @Inject constructor(private val service: ComicVineService) : BaseDataSource() {
@@ -25,7 +27,7 @@ class ComicSource2 @Inject constructor(private val service: ComicVineService) : 
             //Todo: map item list
             item
         }
-    })
+    }).flowOn(Dispatchers.IO)
 
     suspend fun fetchData4() = resultLiveData { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
 }
