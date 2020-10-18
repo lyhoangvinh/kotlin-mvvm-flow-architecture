@@ -9,7 +9,9 @@ import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.data.entities.State
 import com.lyhoangvinh.simple.utils.extension.observe
 import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 
 
 abstract class BaseViewModel : ViewModel() {
@@ -76,4 +78,10 @@ abstract class BaseViewModel : ViewModel() {
             callBack.invoke(it.data)
         }
     }
+
+    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) =
+        onEach { publishState(it.state) }
+           .catch { cause ->
+
+           }.collect { onDataSuccess.invoke(it.data) }
 }

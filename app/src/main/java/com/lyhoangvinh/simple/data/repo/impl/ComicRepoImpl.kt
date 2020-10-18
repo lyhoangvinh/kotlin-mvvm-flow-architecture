@@ -13,6 +13,7 @@ import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.data.source.ComicSource
 import com.lyhoangvinh.simple.data.source.ComicSource2
 import com.lyhoangvinh.simple.utils.Constants
+import com.lyhoangvinh.simple.utils.extension.resultFlow
 import com.lyhoangvinh.simple.utils.extension.resultLiveData
 import com.lyhoangvinh.simple.utils.livedata.RefreshableLiveData
 import com.skydoves.sandwich.*
@@ -37,7 +38,7 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
         ).flow
     }
 
-    override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData() }.asFlow()
+    override suspend fun getData2(): Flow<Resource<BaseResponseComic<Issues>>> = resultFlow { comicSource2.fetchData() }
 
     override suspend fun getData3(): LiveData<Resource<BaseResponseComic<Issues>>> = resultLiveData{ comicSource2.fetchData() }
 

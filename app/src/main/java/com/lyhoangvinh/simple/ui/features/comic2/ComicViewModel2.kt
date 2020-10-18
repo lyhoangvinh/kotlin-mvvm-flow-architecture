@@ -13,8 +13,7 @@ import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
 import com.lyhoangvinh.simple.utils.extension.observe
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -31,18 +30,21 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
 //                publishState(it.state)
 //                comicObservable.notifyContent(it.toString())
 //            }
+            comicRepo.getData2().execute {
+                comicObservable.notifyContent(it.toString())
+            }
 //            comicRepo.getData4().withState2(lifecycleOwner) {
 //                comicObservable.notifyContent(it.toString())
 //            }
 
-        }
-        viewModelScope.launch {
-            try {
-                val data = comicRepo.getData5()
-                comicObservable.notifyContent(data.body().toString())
-            }catch (ex: Exception) {
-                comicObservable.notifyContent(ex.message.toString())
-            }
+//        }
+//        viewModelScope.launch {
+//            try {
+//                val data = comicRepo.getData5()
+//                comicObservable.notifyContent(data.body().toString())
+//            }catch (ex: Exception) {
+//                comicObservable.notifyContent(ex.message.toString())
+//            }
         }
     }
 

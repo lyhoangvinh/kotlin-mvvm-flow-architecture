@@ -7,9 +7,11 @@ import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.utils.livedata.LiveDataCallAdapterFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import org.intellij.lang.annotations.Flow
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -153,3 +155,13 @@ fun <T> resultLiveData(networkCall: suspend () -> Resource<T>): LiveData<Resourc
         }
     }
 
+fun <T> resultFlow(networkCall: suspend () -> Resource<T>): kotlinx.coroutines.flow.Flow<Resource<T>> =
+    flow {
+        emit(Resource.loading())
+        val responseStatus = networkCall.invoke()
+        if (responseStatus.status == Status.SUCCESS) {
+            emit(responseStatus)
+        } else if (responseStatus.status == Status.ERROR) {
+            emit(Resource.error(responseStatus.message.orEmpty()))
+        }
+    }

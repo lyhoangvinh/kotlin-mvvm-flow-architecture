@@ -177,3 +177,5 @@ app/app.iml
 .idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_alpha04_aar.xml
 .idea/libraries/Gradle__androidx_paging_paging_rxjava2_3_0_0_alpha02_aar.xml
 .idea/libraries/Gradle__androidx_paging_paging_runtime_3_0_0_alpha02_aar.xml
+.idea/kotlin-mvvm-flow-architecture.iml
+.idea/modules/app/app.iml
