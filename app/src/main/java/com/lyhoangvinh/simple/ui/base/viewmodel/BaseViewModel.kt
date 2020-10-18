@@ -32,7 +32,8 @@ abstract class BaseViewModel : ViewModel() {
     @CallSuper
     fun onCreate(
         lifecycleOwner: LifecycleOwner,
-        bundle: Bundle?) {
+        bundle: Bundle?
+    ) {
         this.lifecycleOwner = lifecycleOwner
         if (isFirstTimeUiCreate) {
             onFirstTimeUiCreate(lifecycleOwner, bundle)
@@ -67,29 +68,47 @@ abstract class BaseViewModel : ViewModel() {
         stateLiveData.setValue(state)
     }
 
-    fun <T> LiveData<Resource<T>>?.withState(viewLifecycleOwner: LifecycleOwner, callBack: (data: T?) -> Unit) {
+    fun <T> LiveData<Resource<T>>?.withState(
+        viewLifecycleOwner: LifecycleOwner,
+        callBack: (data: T?) -> Unit
+    ) {
         this.observe(viewLifecycleOwner) {
             publishState(it.state)
             if (it.state == State.success()) callBack.invoke(it.data)
         }
     }
 
-    fun <T> LiveData<Resource<T>>?.withState2(viewLifecycleOwner: LifecycleOwner, callBack: (data: T?) -> Unit) {
+    fun <T> LiveData<Resource<T>>?.withState2(
+        viewLifecycleOwner: LifecycleOwner,
+        callBack: (data: T?) -> Unit
+    ) {
         this.observe(viewLifecycleOwner) {
             publishState(it.state)
             callBack.invoke(it.data)
         }
     }
 
-    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit, onDataError:((String)-> Unit)?=null) =
-            catch { cause -> onDataError?.invoke(cause.message.orEmpty()) }.collect {
-                publishState(it.state)
-                if (it.status == Status.SUCCESS) {
-                    onDataSuccess.invoke(it.data)
-                } else if (it.status == Status.ERROR) {
-                    onDataError?.invoke(it.message.orEmpty())
-                }
+    suspend fun <T> Flow<Resource<T>>.execute(showProgress: Boolean, onDataSuccess: (T?) -> Unit, onDataError: ((String) -> Unit)? = null) =
+        catch { cause ->
+            /*
+              val message = ErrorEntity.getError(it).getMessage().orEmpty()
+                    publishState(State.error(message))
+                    errorConsumer?.accept(message)
+             */
+            onDataError?.invoke(cause.message.orEmpty())
+        }.collect {
+            Log.i("source", "source addRequest: resource changed: $it")
+            if (it.data != null) {
+                onDataSuccess.invoke(it.data)
             }
+            if (it.status == Status.LOADING && !showProgress) {
+                // do nothing if progress showing is not allowed
+            } else {
+                publishState(it.state)
+                if (it.status == Status.ERROR) onDataError?.invoke(it.message.orEmpty())
+            }
+        }
 
-    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) = execute(onDataSuccess, null)
+    suspend fun <T> Flow<Resource<T>>.execute(showProgress: Boolean, onDataSuccess: (T?) -> Unit) =
+        execute(showProgress, onDataSuccess, null)
 }
