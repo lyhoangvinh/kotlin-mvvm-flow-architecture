@@ -81,9 +81,10 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) =
-        onEach { publishState(it.state) }
-           .catch { cause ->
-               Log.d("ERORROR X", cause.message.orEmpty())
-           }.collect { onDataSuccess.invoke(it.data) }
+    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit, onDataError:((String)-> Unit)?=null) =
+        onEach { publishState(it.state)
+            if (it.status == Status.ERROR) onDataError?.invoke(it.message.orEmpty())
+        }.catch { cause -> onDataError?.invoke(cause.message.orEmpty()) }.collect { onDataSuccess.invoke(it.data) }
+
+    suspend fun<T> Flow<Resource<T>>.execute(onDataSuccess: (T?)-> Unit) = execute(onDataSuccess, null)
 }
