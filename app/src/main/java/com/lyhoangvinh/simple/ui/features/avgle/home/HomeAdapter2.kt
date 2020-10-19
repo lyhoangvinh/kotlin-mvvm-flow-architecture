@@ -61,7 +61,6 @@ class HomeAdapter2 @Inject constructor(@ActivityContext context: Context): BaseI
            is SearchItemData2 -> ITEM_SEARCH
            is DividerItem2 -> ITEM_DIVIDER
            is CategoryItem2 -> ITEM_CATEGORY
-            else -> throw RuntimeException("Not support item $item")
         }
     }
     override fun getLayoutResource(viewType: Int): Int {
