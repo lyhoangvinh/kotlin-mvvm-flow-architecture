@@ -23,7 +23,7 @@ import javax.inject.Inject
 class HomeAdapter2 @Inject constructor(@ActivityContext context: Context): BaseItemDataAdapter(context, object : DiffUtil.ItemCallback<ItemData>() {
     override fun areItemsTheSame(oldItem: ItemData, newItem: ItemData): Boolean {
         return when {
-            oldItem is CategoryItem2 && newItem is CategoryItem2 -> oldItem.categories == newItem.categories
+            oldItem is CategoryItem2 && newItem is CategoryItem2 -> oldItem.idViewModel == newItem.idViewModel
             else -> false
         }
     }
