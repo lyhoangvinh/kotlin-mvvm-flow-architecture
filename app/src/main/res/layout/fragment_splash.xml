@@ -26,5 +26,13 @@
             android:layout_height="wrap_content"
             android:text="Get Api"
             android:textColor="@color/colorText" />
+
+        <Button
+            android:id="@+id/btnAvg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item View Model"
+            android:textColor="@color/colorText" />
+
     </LinearLayout>
 </layout>

@@ -21,5 +21,9 @@ class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewMo
         binding.btnRcv.setOnClickListener {
             getNavController()?.navigate(SplashFragmentDirections.toComic())
         }
+
+        binding.btnAvg.setOnClickListener {
+            getNavController()?.navigate(SplashFragmentDirections.toHomeAvg())
+        }
     }
 }

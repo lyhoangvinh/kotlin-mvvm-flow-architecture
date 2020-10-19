@@ -135,4 +135,12 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment:$rootProject.ext.navigationVersion"
     implementation "androidx.navigation:navigation-ui:$rootProject.ext.navigationVersion"
+
+    //ultraviewpager
+    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+        transitive = true
+    }
+
+    //my util
+    implementation "com.github.lyhoangvinh:myutil:$rootProject.ext.myutilVersion"
 }

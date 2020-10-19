@@ -25,6 +25,14 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/toHomeAvg"
+            app:destination="@id/homeAvg"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -36,4 +44,9 @@
         android:id="@+id/comic2"
         android:name="com.lyhoangvinh.simple.ui.features.comic2.ComicFragment2"
         tools:layout="@layout/fragment_comic2" />
+
+    <fragment
+        android:id="@+id/homeAvg"
+        android:name="com.lyhoangvinh.simple.ui.features.avgle.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 </navigation>

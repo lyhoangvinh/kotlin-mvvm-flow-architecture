@@ -80,4 +80,5 @@
         <attr name="rtl_scrollEnabled" format="boolean"/>
 
     </declare-styleable>
+
 </resources>
