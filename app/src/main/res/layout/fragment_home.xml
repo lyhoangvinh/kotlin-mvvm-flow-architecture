@@ -35,8 +35,6 @@
 
             <include layout="@layout/view_recyclerview" />
 
-
-
         </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
