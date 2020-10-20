@@ -69,21 +69,23 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun <T> LiveData<Resource<T>>?.withState(
+        showProgress: Boolean,
         viewLifecycleOwner: LifecycleOwner,
         callBack: (data: T?) -> Unit
     ) {
         this.observe(viewLifecycleOwner) {
-            publishState(it.state)
+            if (showProgress) publishState(it.state)
             if (it.state == State.success()) callBack.invoke(it.data)
         }
     }
 
     fun <T> LiveData<Resource<T>>?.withState2(
+        showProgress: Boolean,
         viewLifecycleOwner: LifecycleOwner,
         callBack: (data: T?) -> Unit
     ) {
         this.observe(viewLifecycleOwner) {
-            publishState(it.state)
+            if (showProgress) publishState(it.state)
             callBack.invoke(it.data)
         }
     }

@@ -11,7 +11,7 @@ import com.lyhoangvinh.simple.ui.base.fragment.BaseViewModelRecyclerViewFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseViewModelRecyclerViewFragment<FragmentHomeBinding, HomeViewModel, HomeAdapter2>() {
+class HomeFragment : BaseViewModelRecyclerViewFragment<FragmentHomeBinding, HomeViewModel, HomeAdapter>() {
     override val viewModel: HomeViewModel by viewModels()
     override fun getLayoutResource() = R.layout.fragment_home
     override fun initialize(view: View, ctx: Context?) {
