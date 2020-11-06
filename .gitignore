@@ -180,3 +180,4 @@ app/app.iml
 .idea/kotlin-mvvm-flow-architecture.iml
 .idea/modules/app/app.iml
 build/kotlin/sessions/kotlin-compiler-3770180944865977673.salive
+.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_reflect_1_3_72_jar.xml
