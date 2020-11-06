@@ -143,4 +143,7 @@ dependencies {
 
     //my util
     implementation "com.github.lyhoangvinh:myutil:$rootProject.ext.myutilVersion"
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
 }

@@ -33,6 +33,14 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/toTestSealed"
+            app:destination="@id/testSealed"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
@@ -49,4 +57,8 @@
         android:id="@+id/homeAvg"
         android:name="com.lyhoangvinh.simple.ui.features.avgle.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/testSealed"
+        android:name="com.lyhoangvinh.simple.ui.features.testsealed.TestSealedFragment" />
 </navigation>

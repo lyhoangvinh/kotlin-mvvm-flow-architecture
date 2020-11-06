@@ -3,8 +3,6 @@ package com.lyhoangvinh.simple.utils.extension
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
-import com.lyhoangvinh.simple.data.entities.Status
-import com.lyhoangvinh.simple.data.entities.Resource
 import com.lyhoangvinh.simple.utils.livedata.LiveDataCallAdapterFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -17,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.CoroutineContext
 
 fun makeOkHttpClientBuilder(): OkHttpClient.Builder {
     val logging = HttpLoggingInterceptor()
@@ -165,5 +162,27 @@ suspend fun <T1, T2, T3, T4, R> zipFlow(source1: suspend () -> T1,
              zipper.invoke(data123.first(), data123.second(), data123.third(), data4())
          }
 
+/**
+ * ⚠Note: The code ordinal() will work only with 1st level sealed classes.
+ * If you need something more sophisticated, make sure to adjust that method accordingly.
+ * ⚠Note 2: Like many features using reflection, when using R8’s or Proguard’s obfuscation, you can encounter runtime crashes.
+ * You need to make sure both the classes and the companion objects are available during runtime. One way to do it is with the @Keep annotation.
+ */
+inline fun <reified T : Any> T.ordinal(): Int {
+    // we differenciate if it's top level sealed class here 👇
+    if (T::class.isSealed) {
+        return T::class.java.classes.indexOfFirst { sub -> sub == javaClass }
+    }
+    // and we now added this part 👇
+    val kLass = if (T::class.isCompanion) {
+        javaClass.declaringClass
+    } else {
+        javaClass
+    }
 
+    return kLass?.superclass?.classes?.indexOfFirst { it == kLass } ?: -1
+}
+
+inline fun <reified T : Any> T.ordinal2(): Int =
+    T::class.java.classes.indexOfFirst { sub -> sub == javaClass }
 
