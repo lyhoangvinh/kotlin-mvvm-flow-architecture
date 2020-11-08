@@ -1,6 +1,7 @@
 package com.lyhoangvinh.simple.ui.features.comic2
 
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.hilt.lifecycle.ViewModelInject
@@ -30,10 +31,17 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
 //                publishState(it.state)
 //                comicObservable.notifyContent(it.toString())
 //            }
-            comicRepo.getData2().execute(true) {
+//            comicRepo.getData2().execute(true) {
+//                val data = Thread.currentThread().name + "\n " + it.toString()
+//                comicObservable.notifyContent(data)
+//            }
+
+            comicRepo.getData6().execute(true, onDataSuccess =  {
                 val data = Thread.currentThread().name + "\n " + it.toString()
                 comicObservable.notifyContent(data)
-            }
+            }, onDataError =  {
+                Log.d("EROOR23123", it)
+            })
 
 //            comicRepo.getData4().withState2(lifecycleOwner) {
 //                comicObservable.notifyContent(it.toString())

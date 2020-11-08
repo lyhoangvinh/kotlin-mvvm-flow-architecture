@@ -40,4 +40,12 @@ interface ComicVineService {
         , @Query("sort") sort: String
     ):
             ApiLiveData<Resource<BaseResponseComic<Issues>>>
+
+
+    @GET("issues")
+    suspend fun getIssues5(
+        @Query("limit") limit: Int, @Query("offset") offset: Int
+        , @Query("api_key") api_key: String, @Query("format") format: String
+        , @Query("sort") sort: String
+    ): Resource<BaseResponseComic<Issues>>
 }

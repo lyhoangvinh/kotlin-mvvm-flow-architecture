@@ -32,4 +32,6 @@ interface AvgleService {
 
     @GET("jav/{query}/{page}")
     suspend fun searchJav(@Path("query") query: String, @Path("page") page: Int): Response<BaseResponseAvgle<VideosResponseAvgle>>
+
+
 }

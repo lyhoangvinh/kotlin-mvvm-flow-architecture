@@ -36,4 +36,10 @@ class ComicSource2 @Inject constructor(private val service: ComicVineService) : 
     }).flowOn(Dispatchers.IO)
 
     suspend fun fetchData4() = resultLiveData { service.getIssues2(20, 3, Constants.KEY, "json", "cover_date: desc") }
+
+    suspend fun fetchData5() :
+        Flow<Resource<BaseResponseComic<Issues>>>  =
+            resultFlow2 {
+                service.getIssues5(20, 3, Constants.KEY, "json", "cover_date: desc")
+            }.flowOn(Dispatchers.IO)
 }

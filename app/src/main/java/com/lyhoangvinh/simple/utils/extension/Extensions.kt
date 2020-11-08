@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
 import com.lyhoangvinh.simple.utils.livedata.LiveDataCallAdapterFactory
+import com.lyhoangvinh.simple.utils.network.NetworkResourceAdapterFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import okhttp3.OkHttpClient
@@ -46,6 +47,7 @@ fun <T> makeService(
         .client(okHttpClient)
         .addConverterFactory(ServiceResponseConverter(gson))
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
+        .addCallAdapterFactory(NetworkResourceAdapterFactory())
         .build()
     return retrofit.create(serviceClass)
 }

@@ -58,4 +58,6 @@ class ComicRepoImpl @Inject constructor(private val comicVineService: ComicVineS
 
     override suspend fun getData5(): Response<BaseResponseComic<Issues>> = comicVineService.getIssues2(20, 1, Constants.KEY, "json", "cover_date: desc")
 
+    override suspend fun getData6(): Flow<Resource<BaseResponseComic<Issues>>> =
+        comicSource2.fetchData5()
 }
