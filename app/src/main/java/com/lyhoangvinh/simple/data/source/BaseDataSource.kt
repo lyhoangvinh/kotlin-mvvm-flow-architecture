@@ -86,7 +86,11 @@ abstract class BaseDataSource {
     protected suspend fun <T>  resultFlow2(call: suspend () -> Resource<T>): Flow<Resource<T>> =
         flow {
             emit(Resource.loading())
-            val responseStatus = call.invoke()
+            val responseStatus : Resource<T> = try {
+                 call.invoke()
+            } catch (e: Exception) {
+                 error(e.message ?: e.toString())
+            }
             if (responseStatus.status == Status.SUCCESS) {
                 emit(responseStatus)
             } else if (responseStatus.status == Status.ERROR) {
