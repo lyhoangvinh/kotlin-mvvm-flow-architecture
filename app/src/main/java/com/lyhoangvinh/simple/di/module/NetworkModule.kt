@@ -2,8 +2,8 @@ package com.lyhoangvinh.simple.di.module
 
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.utils.Constants
-import com.lyhoangvinh.simple.data.services.AvgleService
-import com.lyhoangvinh.simple.data.services.ComicVineService
+import com.vinh.data.services.AvgleService
+import com.vinh.data.services.ComicVineService
 import com.lyhoangvinh.simple.di.qualifier.OkHttpNoAuth
 import com.lyhoangvinh.simple.utils.extension.makeOkHttpClientBuilder
 import com.lyhoangvinh.simple.utils.extension.makeService

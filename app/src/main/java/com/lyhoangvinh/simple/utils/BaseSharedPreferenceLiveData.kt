@@ -2,7 +2,7 @@ package com.lyhoangvinh.simple.utils
 
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
-import com.lyhoangvinh.simple.data.SharedPrefs
+import com.vinh.data.SharedPrefs
 
 abstract class BaseSharedPreferenceLiveData<T>(val sharedPrefs: SharedPrefs?, val key: String, private val defValue: T) : LiveData<T>() {
 

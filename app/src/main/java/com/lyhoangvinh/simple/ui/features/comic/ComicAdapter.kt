@@ -1,15 +1,13 @@
 package com.lyhoangvinh.simple.ui.features.comic
 
-import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.R
-import com.lyhoangvinh.simple.data.entities.comic.Issues
+import com.vinh.data.entities.comic.Issues
 import com.lyhoangvinh.simple.databinding.ItemComicsBinding
 import com.lyhoangvinh.simple.ui.base.adapter.BasePagedAdapter
 import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder
-import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
 class ComicAdapter @Inject constructor() : BasePagedAdapter<Issues, ItemComicsBinding>(object : DiffUtil.ItemCallback<Issues>() {

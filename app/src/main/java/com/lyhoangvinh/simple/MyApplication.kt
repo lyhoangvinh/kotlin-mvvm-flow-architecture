@@ -12,6 +12,7 @@ import com.lyhoangvinh.simple.ui.features.error.ErrorActivity
 import com.lyhoangvinh.simple.ui.features.splash.SplashFragment
 import com.lyhoangvinh.simple.utils.Constants
 import dagger.hilt.android.HiltAndroidApp
+import org.json.JSONObject
 import kotlin.system.exitProcess
 
 @HiltAndroidApp
@@ -28,7 +29,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-
         val displayMetrics = DisplayMetrics()
         val windowManager =
             applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.vinh.domain.itemviewmodel.ItemData
 import dagger.hilt.android.qualifiers.ActivityContext
 
 abstract class BaseItemDataAdapter(@ActivityContext val context: Context, diffUtil: DiffUtil.ItemCallback<ItemData>) : ListAdapter<ItemData,  BaseItemDataViewHolder<ItemData, ViewDataBinding>>(diffUtil){

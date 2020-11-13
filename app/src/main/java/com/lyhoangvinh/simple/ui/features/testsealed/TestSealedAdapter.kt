@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lyhoangvinh.simple.R
-import com.lyhoangvinh.simple.data.itemviewmodel.ModelListItem
+import com.vinh.data.itemviewmodel.ModelListItem
 import com.lyhoangvinh.simple.databinding.ItemContentBinding
 import com.lyhoangvinh.simple.utils.extension.ordinal
 import dagger.hilt.android.qualifiers.ActivityContext

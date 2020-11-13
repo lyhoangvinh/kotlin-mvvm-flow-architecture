@@ -10,7 +10,7 @@
 
         <variable
             name="dto"
-            type="com.lyhoangvinh.simple.data.entities.comic.Issues" />
+            type="com.vinh.data.entities.comic.Issues" />
 
     </data>
 

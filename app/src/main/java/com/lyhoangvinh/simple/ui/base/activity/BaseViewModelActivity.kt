@@ -1,15 +1,12 @@
 package com.lyhoangvinh.simple.ui.base.activity
 
 import android.os.Bundle
-import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
-import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
 import com.lyhoangvinh.simple.utils.extension.observe
-import javax.inject.Inject
+import com.vinh.domain.model.State
+import com.vinh.domain.model.Status
 
 abstract class BaseViewModelActivity<B : ViewDataBinding, VM : BaseViewModel> : BaseActivity() {
 

@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.lyhoangvinh.simple.ui.base.adapter.BaseItemViewHolder
-import com.lyhoangvinh.simple.ui.base.adapter.ItemViewModel
+import com.vinh.domain.model.ItemViewModel
 import dagger.hilt.android.qualifiers.ActivityContext
 
 

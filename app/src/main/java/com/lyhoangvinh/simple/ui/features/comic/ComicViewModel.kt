@@ -6,11 +6,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.lyhoangvinh.simple.data.repo.ComicRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
-import kotlinx.coroutines.Dispatchers
+import com.vinh.domain.repo.ComicRepo
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRepo) : BaseListViewModel<ComicAdapter>() {
 

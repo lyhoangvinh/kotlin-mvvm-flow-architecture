@@ -1,22 +1,14 @@
 package com.lyhoangvinh.simple.ui.features.comic2
 
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.lyhoangvinh.simple.BR
-import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.repo.ComicRepo
-import com.lyhoangvinh.simple.data.services.ComicVineService
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
-import com.lyhoangvinh.simple.utils.extension.observe
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import java.lang.Exception
+import com.vinh.domain.repo.ComicRepo
 import javax.inject.Inject
 
 class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicRepo, val comicObservable: ComicObservable) : BaseViewModel() {
@@ -36,16 +28,16 @@ class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicR
 //                comicObservable.notifyContent(data)
 //            }
 
-            comicRepo.getData6().execute(true, onDataSuccess =  {
-                val data = Thread.currentThread().name + "\n " + it.toString()
-                comicObservable.notifyContent(data)
-            }, onDataError =  {
-                Log.d("EROOR23123", it)
-            })
+//            comicRepo.getData6().execute(true, onDataSuccess =  {
+//                val data = Thread.currentThread().name + "\n " + it.toString()
+//                comicObservable.notifyContent(data)
+//            }, onDataError =  {
+//                Log.d("EROOR23123", it)
+//            })
 
-//            comicRepo.getData4().withState2(lifecycleOwner) {
-//                comicObservable.notifyContent(it.toString())
-//            }
+            comicRepo.getData4().withState2(true, lifecycleOwner) {
+                comicObservable.notifyContent(it.toString())
+            }
 
 //        }
 //        viewModelScope.launch {

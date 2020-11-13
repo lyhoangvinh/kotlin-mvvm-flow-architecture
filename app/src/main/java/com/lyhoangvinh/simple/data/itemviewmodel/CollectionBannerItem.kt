@@ -1,9 +1,0 @@
-package com.lyhoangvinh.simple.data.itemviewmodel
-
-import com.lyhoangvinh.simple.data.entities.avgle.Collection
-import com.lyhoangvinh.simple.ui.base.adapter.ItemViewModel
-
-data class CollectionBannerItem(var collections: List<Collection>?):ItemViewModel {
-    override val idViewModel: String?
-        get() = collections?.size.toString()
-}

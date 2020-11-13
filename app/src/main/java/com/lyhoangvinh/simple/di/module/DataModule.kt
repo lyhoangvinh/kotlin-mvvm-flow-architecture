@@ -2,9 +2,9 @@ package com.lyhoangvinh.simple.di.module
 
 import androidx.room.Room
 import com.lyhoangvinh.simple.MyApplication
-import com.lyhoangvinh.simple.data.DatabaseManager
-import com.lyhoangvinh.simple.data.SharedPrefs
-import com.lyhoangvinh.simple.data.dao.*
+import com.vinh.data.DatabaseManager
+import com.vinh.data.SharedPrefs
+import com.vinh.data.dao.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

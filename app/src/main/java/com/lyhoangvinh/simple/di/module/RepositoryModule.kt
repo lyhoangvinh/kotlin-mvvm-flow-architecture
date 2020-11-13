@@ -1,10 +1,9 @@
 package com.lyhoangvinh.simple.di.module
 
-
-import com.lyhoangvinh.simple.data.repo.AvgRepo
-import com.lyhoangvinh.simple.data.repo.ComicRepo
-import com.lyhoangvinh.simple.data.repo.impl.AvgRepoImpl
-import com.lyhoangvinh.simple.data.repo.impl.ComicRepoImpl
+import com.vinh.data.repo.AvgRepoImpl
+import com.vinh.data.repo.ComicRepoImpl
+import com.vinh.domain.repo.AvgRepo
+import com.vinh.domain.repo.ComicRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

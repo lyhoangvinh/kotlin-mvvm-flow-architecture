@@ -7,8 +7,6 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.lyhoangvinh.simple.R
-import com.lyhoangvinh.simple.data.itemviewmodel.CategoryItem
-import com.lyhoangvinh.simple.data.itemviewmodel.DividerItem
 import com.lyhoangvinh.simple.databinding.ItemSearchBinding
 import com.lyhoangvinh.simple.databinding.ViewDividerBinding
 import com.lyhoangvinh.simple.databinding.ViewRcyHorizontalBinding
@@ -17,6 +15,10 @@ import com.lyhoangvinh.simple.ui.features.avgle.home.inside.CategoriesAdapter
 import com.lyhoangvinh.simple.ui.widget.recycleview.GravitySnapHelper
 import com.lyhoangvinh.simple.ui.widget.recycleview.HorizontalSpaceItemDecoration
 import com.lyhoangvinh.simple.utils.genericCastOrNull
+import com.vinh.domain.itemviewmodel.CategoryItem2
+import com.vinh.domain.itemviewmodel.DividerItem2
+import com.vinh.domain.itemviewmodel.ItemData
+import com.vinh.domain.itemviewmodel.SearchItemData2
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 

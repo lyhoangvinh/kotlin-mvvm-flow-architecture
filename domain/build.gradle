@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.tools
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api kotlinStdlib
+
+    api room
+
+    api retrofit
+    api retrofitGsonConverter
+
+    api coroutinesCore
+    api coroutinesAndroid
+
+    api core
+    api coreKtx
+
+    api lifecycleExtensions
+    api lifecycleRuntime
+    api lifecycleLivedata
+
+    api paging
+ }

@@ -7,7 +7,7 @@
 
         <variable
             name="video"
-            type="com.lyhoangvinh.simple.data.entities.avgle.Video" />
+            type="com.vinh.domain.entities.avgle.Video" />
     </data>
 
     <RelativeLayout

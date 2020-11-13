@@ -1,9 +1,7 @@
 package com.lyhoangvinh.simple.utils
 
-import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.EditorInfo
 import android.webkit.WebChromeClient
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,8 +11,10 @@ import android.webkit.WebViewClient
 import android.webkit.WebSettings
 
 import com.lyhoangvinh.simple.R
-import com.lyhoangvinh.simple.data.entities.*
 import com.lyhoangvinh.simple.ui.widget.RotateLoading
+import com.vinh.data.entities.Connection
+import com.vinh.data.entities.DataEmpty
+import com.vinh.data.entities.VisibilityView
 
 object BindingUtils {
 

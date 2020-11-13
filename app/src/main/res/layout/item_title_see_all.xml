@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="title" type="com.lyhoangvinh.simple.data.itemviewmodel.TitleSeeAllItem"/>
+        <variable name="title" type="com.vinh.domain.itemviewmodel.TitleSeeAllItem"/>
     </data>
 
     <LinearLayout

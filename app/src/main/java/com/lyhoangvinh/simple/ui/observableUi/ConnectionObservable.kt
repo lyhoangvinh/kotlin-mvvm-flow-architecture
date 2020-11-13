@@ -5,8 +5,8 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.lyhoangvinh.simple.BR
-import com.lyhoangvinh.simple.data.entities.Connection
-import com.lyhoangvinh.simple.utils.livedata.ConnectionLiveData
+import com.lyhoangvinh.simple.utils.ConnectionLiveData
+import com.vinh.data.entities.Connection
 import javax.inject.Inject
 
 class ConnectionObservable @Inject constructor(private val connectionLive: ConnectionLiveData) :

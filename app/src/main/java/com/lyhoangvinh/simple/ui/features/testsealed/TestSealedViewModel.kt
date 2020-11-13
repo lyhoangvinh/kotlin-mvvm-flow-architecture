@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.lyhoangvinh.simple.data.itemviewmodel.ModelListItem
+import com.vinh.data.itemviewmodel.ModelListItem
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

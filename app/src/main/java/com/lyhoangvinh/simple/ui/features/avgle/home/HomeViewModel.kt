@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.lyhoangvinh.simple.data.repo.AvgRepo
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
+import com.vinh.domain.repo.AvgRepo
 
 class HomeViewModel @ViewModelInject constructor(private val avgRepo: AvgRepo): BaseListViewModel<HomeAdapter>() { override fun fetchData() {}
 

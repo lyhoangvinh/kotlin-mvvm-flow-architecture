@@ -6,12 +6,12 @@ import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
-import com.lyhoangvinh.simple.data.entities.Resource
-import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.utils.extension.observe
 import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
-import kotlinx.coroutines.CoroutineScope
+import com.vinh.data.source.BaseDataSource
+import com.vinh.domain.model.Resource
+import com.vinh.domain.model.State
+import com.vinh.domain.model.Status
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
@@ -92,14 +92,13 @@ abstract class BaseViewModel : ViewModel() {
 
     /**
      * Add and execute an resource flowable created by
-     * see [com.lyhoangvinh.simple.data.source.BaseDataSource]
+     * see [com.vinh.data.source.BaseDataSource]
      * Loading, error, success status will be updated automatically via [.stateLiveData] which should be observed
      * by fragments / activities to update UI appropriately
      * @param showProgress true if should show progress when executing, false if not
      * @param onDataSuccess consume response data
      * @param <T> type of response
     </T> */
-
     suspend fun <T> Flow<Resource<T>>.execute(showProgress: Boolean, onDataSuccess: (T?) -> Unit, onDataError: ((String) -> Unit)? = null) =
         catch { cause ->
             /*

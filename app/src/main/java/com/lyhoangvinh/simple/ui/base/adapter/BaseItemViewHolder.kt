@@ -2,6 +2,7 @@ package com.lyhoangvinh.simple.ui.base.adapter
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
+import com.vinh.domain.model.ItemViewModel
 
 abstract class BaseItemViewHolder<T : ItemViewModel, B : ViewDataBinding>(view: View) :
     BaseViewHolder<B>(view) {

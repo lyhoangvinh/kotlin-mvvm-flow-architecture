@@ -6,12 +6,10 @@ import android.view.View
 import androidx.annotation.CallSuper
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.lyhoangvinh.simple.data.entities.State
-import com.lyhoangvinh.simple.data.entities.Status
 import com.lyhoangvinh.simple.ui.base.activity.BaseActivity
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
-import javax.inject.Inject
+import com.vinh.domain.model.State
+import com.vinh.domain.model.Status
 
 /**
  * Base fragment class that has a ViewModel extending [BaseViewModel].
