@@ -221,3 +221,7 @@ build/kotlin/sessions/kotlin-compiler-3770180944865977673.salive
 .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_0.xml
 .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_0.xml
 .idea/libraries/Gradle__com_squareup_retrofit2_converter_scalars_2_3_0.xml
+.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_0_aar.xml
+.idea/libraries/Gradle__androidx_room_room_common_2_2_5.xml
+.idea/libraries/Gradle__androidx_room_room_runtime_2_2_5_aar.xml
+.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml
