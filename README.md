@@ -170,13 +170,14 @@ class SafeMutableLiveData<T> : MutableLiveData<T>() {
 ```
 #### Execute room
 ```kotlin
-    fun execute(action: () -> Unit) {
-        Completable.fromAction {
-            action.invoke()
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-    }
+   CoroutineScope.launch {
+            try {
+                val usersFromDb = dbHelper.getUsers()
+                // here you have your usersFromDb
+            } catch (e: Exception) {
+                // handler error
+            }
+        }
 ```
 
 ### Contributing to Android Kotlin MVVM Architecture
