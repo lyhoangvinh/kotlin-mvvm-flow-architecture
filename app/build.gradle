@@ -67,20 +67,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
     implementation rootProject.kotlinStdlib
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.supportConstraintVersion"
-    implementation "androidx.multidex:multidex:$rootProject.ext.multidexVersion"
-    //noinspection GradleCompatible
-    implementation 'com.google.android.material:material:1.2.0-alpha05'
-//    implementation "com.google.android.material:material:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.legacy:legacy-support-v4:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.androidxSupportVersion"
-    implementation rootProject.androidxSupport
-    implementation "androidx.cardview:cardview:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.fragment:fragment:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.vectordrawable:vectordrawable:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.ext.androidxSupportVersion"
-    implementation "androidx.viewpager2:viewpager2:$rootProject.ext.androidxSupportVersion"
+    implementation rootProject.supportConstraint
+    implementation rootProject.multidex
+    implementation rootProject.material
+    implementation rootProject.androidxSupportLegacy
+    implementation rootProject.androidxSupportRecyclerview
+    implementation rootProject.androidxSupportAppcompat
+    implementation rootProject.androidxSupportCardview
+    implementation rootProject.androidxSupportFragment
+    implementation rootProject.androidxSupportVectordrawable
+    implementation rootProject.androidxSupportVectordrawableAnimated
+    implementation rootProject.androidxSupportViewpager2
 
     //lifecycle
     implementation rootProject.lifecycleExtensions
@@ -104,6 +103,8 @@ dependencies {
 
     //room
     implementation rootProject.room
+    annotationProcessor "androidx.room:room-compiler:$roomDatabaseVersion"
+    implementation rootProject.roomCoroutine
     kapt rootProject.roomCompiler
 
     // retrofit
@@ -116,7 +117,6 @@ dependencies {
     //dagger hilt
     implementation rootProject.dagger
     kapt rootProject.daggerCompiler
-    implementation rootProject.daggerViewmodel
     kapt rootProject.daggerHiltCompiler
 
     //picasso

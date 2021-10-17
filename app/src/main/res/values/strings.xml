@@ -40,4 +40,10 @@
 
     <string name="ok">OK</string>
     <string name="summary">Summary</string>
+
+    <string name="like_number">Like: %s</string>
+    <string name="view_number">View: %s</string>
+
+    <string name="tab_favorite">Favorite</string>
+    <string name="tab_home">Home</string>
 </resources>

@@ -3,12 +3,10 @@ package com.lyhoangvinh.simple.ui.features.splash
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.databinding.FragmentSplashBinding
 import com.lyhoangvinh.simple.ui.base.fragment.BaseViewModelFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewModel>() {
@@ -27,6 +25,10 @@ class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewMo
         }
         binding.btnTestSealedClass.setOnClickListener {
             getNavController()?.navigate(SplashFragmentDirections.toTestSealed())
+        }
+
+        binding.btnVideo.setOnClickListener {
+            getNavController()?.navigate(SplashFragmentDirections.toVideo())
         }
     }
 }

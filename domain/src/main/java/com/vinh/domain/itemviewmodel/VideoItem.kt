@@ -5,6 +5,6 @@ import com.vinh.domain.model.ItemViewModel
 
 data class VideoItem(var videos: List<Video>?) :
     ItemViewModel {
-    override val idViewModel: String?
+    override val idViewModel: String
         get() = videos?.size.toString()
 }

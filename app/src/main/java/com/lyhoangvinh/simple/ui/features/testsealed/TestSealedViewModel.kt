@@ -1,16 +1,18 @@
 package com.lyhoangvinh.simple.ui.features.testsealed
 
 import android.os.Bundle
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.vinh.data.itemviewmodel.ModelListItem
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class TestSealedViewModel @ViewModelInject constructor() : BaseListViewModel<TestSealedAdapter>() {
+@HiltViewModel
+class TestSealedViewModel @Inject constructor() : BaseListViewModel<TestSealedAdapter>() {
     override fun fetchData() {}
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {

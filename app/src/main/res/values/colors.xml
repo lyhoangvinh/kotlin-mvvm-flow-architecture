@@ -16,4 +16,9 @@
     <color name="material_blue_700">#1976D2</color>
     <color name="material_purple_700">#7B1FA2</color>
     <color name="material_lime_700">#AFB42B</color>
+
+    <color name="colorBack">#000000</color>
+    <color name="colorRed">#EF3127</color>
+
+    <color name="divider">#DDDDDD</color>
 </resources>

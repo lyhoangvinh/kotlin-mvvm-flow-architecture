@@ -1,4 +1,4 @@
-package com.vinh.data.entities.avgle
+package com.vinh.domain.entities.avgle
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class SearchHistory(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long? = null,
+    var id: Long,
 
     var keyword: String? = null,
 

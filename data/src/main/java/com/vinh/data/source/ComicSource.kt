@@ -1,6 +1,7 @@
 package com.vinh.data.source
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.vinh.data.Constants
 import com.vinh.data.entities.comic.Issues
 import com.vinh.data.services.ComicVineService
@@ -21,4 +22,6 @@ class ComicSource(private val comicVineService: ComicVineService) : PagingSource
             return LoadResult.Error(e)
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Issues>): Int? = null
 }

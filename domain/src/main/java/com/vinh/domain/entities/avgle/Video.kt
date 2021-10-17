@@ -8,12 +8,10 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "VIDEO")
 data class Video(
 
-    @PrimaryKey(autoGenerate = true)
-    var idAuto: Long,
-
+    @PrimaryKey
     @SerializedName("vid")
     @Expose
-    var vid: String? = "",
+    var vid: String,
 
     @SerializedName("uid")
     @Expose
@@ -75,5 +73,7 @@ data class Video(
     @Expose
     var previewVideoUrl: String? = "",
 
-    var type: Int? = null
+    var type: Int? = null,
+
+    var favorite: Boolean? = null
 )

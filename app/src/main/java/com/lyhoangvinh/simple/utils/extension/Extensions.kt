@@ -1,5 +1,7 @@
 package com.lyhoangvinh.simple.utils.extension
 
+import android.content.Context
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
@@ -16,6 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
+
+fun Int.toColor(context: Context) = ContextCompat.getColor(context, this)
 
 fun makeOkHttpClientBuilder(): OkHttpClient.Builder {
     val logging = HttpLoggingInterceptor()

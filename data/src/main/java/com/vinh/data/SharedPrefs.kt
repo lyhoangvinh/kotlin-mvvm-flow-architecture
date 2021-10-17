@@ -1,6 +1,5 @@
 package com.vinh.data
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
@@ -11,14 +10,14 @@ import com.vinh.data.utils.SingletonHolder
  */
 
 @Suppress("UNCHECKED_CAST")
-class SharedPrefs private constructor(application: Application) {
+class SharedPrefs private constructor(application: Context) {
     val mSharedPreferences: SharedPreferences
 
     init {
         mSharedPreferences = application.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    companion object : SingletonHolder<SharedPrefs, Application>(::SharedPrefs) {
+    companion object : SingletonHolder<SharedPrefs, Context>(::SharedPrefs) {
         private const val PREFS_NAME = "share_prefs" + "SharedPrefs"
     }
 

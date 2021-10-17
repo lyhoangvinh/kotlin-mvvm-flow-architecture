@@ -41,6 +41,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/toVideo"
+            app:destination="@id/videoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -61,4 +68,8 @@
     <fragment
         android:id="@+id/testSealed"
         android:name="com.lyhoangvinh.simple.ui.features.testsealed.TestSealedFragment" />
+
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.lyhoangvinh.simple.ui.features.videos.VideosFragment" />
 </navigation>

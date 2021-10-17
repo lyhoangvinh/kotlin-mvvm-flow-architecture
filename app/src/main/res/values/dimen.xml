@@ -29,6 +29,7 @@
     <dimen name="padding_70dp">70dp</dimen>
     <dimen name="padding_90dp">90dp</dimen>
 
+    <dimen name="ts_8_sp">8sp</dimen>
     <dimen name="ts_9_sp">9sp</dimen>
     <dimen name="ts_10_sp">10sp</dimen>
     <dimen name="ts_11_sp">11sp</dimen>
@@ -103,4 +104,8 @@
     <dimen name="text_display">34sp</dimen>
     <dimen name="text_html_size">16sp</dimen>
     <!-- END standard -->
+
+
+    <dimen name="divider">0.7dp</dimen>
+    <dimen name="divider_small">0.5dp</dimen>
 </resources>

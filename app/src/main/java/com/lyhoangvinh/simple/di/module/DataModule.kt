@@ -1,23 +1,24 @@
 package com.lyhoangvinh.simple.di.module
 
+import android.content.Context
 import androidx.room.Room
-import com.lyhoangvinh.simple.MyApplication
 import com.vinh.data.DatabaseManager
 import com.vinh.data.SharedPrefs
 import com.vinh.data.dao.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class DataModule {
 
     @Singleton
     @Provides
-    fun providesRoomDatabase(context: MyApplication): DatabaseManager {
+    fun providesRoomDatabase(@ApplicationContext context: Context): DatabaseManager {
         return Room.databaseBuilder(context, DatabaseManager::class.java, "my-database")
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
@@ -26,7 +27,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    internal fun providesSharedPrefs(context: MyApplication): SharedPrefs = SharedPrefs.getInstance(context)
+    internal fun providesSharedPrefs(@ApplicationContext context: Context): SharedPrefs = SharedPrefs.getInstance(context)
 
     @Provides
     @Singleton
@@ -43,6 +44,10 @@ class DataModule {
     @Provides
     @Singleton
     fun provideVideosDao(databaseManager: DatabaseManager): VideosDao = databaseManager.videosDao()
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDao(databaseManager: DatabaseManager): FavoriteDao = databaseManager.favoriteDao()
 
     @Provides
     @Singleton

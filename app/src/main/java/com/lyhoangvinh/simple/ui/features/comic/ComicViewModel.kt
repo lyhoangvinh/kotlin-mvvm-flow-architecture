@@ -1,16 +1,18 @@
 package com.lyhoangvinh.simple.ui.features.comic
 
 import android.os.Bundle
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
 import com.vinh.domain.repo.ComicRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
-class ComicViewModel @ViewModelInject constructor(private val comicRepo: ComicRepo) : BaseListViewModel<ComicAdapter>() {
+@HiltViewModel
+class ComicViewModel @Inject constructor(private val comicRepo: ComicRepo) : BaseListViewModel<ComicAdapter>() {
 
     override fun fetchData() {
         adapter.refresh()

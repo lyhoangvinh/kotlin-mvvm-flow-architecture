@@ -3,15 +3,16 @@ package com.lyhoangvinh.simple.ui.features.comic2
 import android.os.Bundle
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
 import com.vinh.domain.repo.ComicRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class ComicViewModel2 @ViewModelInject constructor(private val comicRepo: ComicRepo, val comicObservable: ComicObservable) : BaseViewModel() {
+@HiltViewModel
+class ComicViewModel2 @Inject constructor(private val comicRepo: ComicRepo, val comicObservable: ComicObservable) : BaseViewModel() {
 
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
         lifecycleOwner.lifecycleScope.launchWhenCreated {

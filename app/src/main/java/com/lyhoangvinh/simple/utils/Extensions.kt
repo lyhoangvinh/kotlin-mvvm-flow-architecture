@@ -35,7 +35,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.transition.TransitionManager
 import com.lyhoangvinh.simple.R
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.qualifiers.ActivityContext
 import java.lang.ref.WeakReference
@@ -88,19 +87,16 @@ fun ImageView.loadImage(url: String) {
 }
 
 fun ImageView.loadImageNotFit(url: String) {
-    Picasso.get()
-        .load(url)
-        .placeholder(R.drawable.ic_placeholder_rectangle_200px)
-        .error(R.drawable.poster_show_not_available)
-        .into(this, object : Callback {
-            override fun onSuccess() {
-
-            }
-
-            override fun onError(e: java.lang.Exception?) {
-                loadImageNotFit(url)
-            }
-        })
+    if (url.isNotEmpty()) {
+        Picasso.get().load(url)
+            .resize(512, 512)
+            .centerInside()
+            .placeholder(R.drawable.ic_placeholder_rectangle_200px)
+            .error(R.drawable.poster_show_not_available)
+            .into(this)
+    } else {
+        setImageResource(R.drawable.poster_show_not_available)
+    }
 }
 
 fun Activity.createDialog(): Dialog? {

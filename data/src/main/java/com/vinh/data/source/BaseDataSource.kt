@@ -56,7 +56,7 @@ abstract class BaseDataSource {
             }
         }
 
-    fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
+    fun <T: Any, A> resultLiveData(databaseQuery: () -> LiveData<T>,
                               networkCall: suspend () -> Response<A>,
                               saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
         liveData(Dispatchers.IO) {

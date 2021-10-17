@@ -7,13 +7,11 @@ import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.Toast
-import com.lyhoangvinh.simple.ui.features.MainActivity
 import com.lyhoangvinh.simple.ui.features.error.ErrorActivity
-import com.lyhoangvinh.simple.ui.features.splash.SplashFragment
 import com.lyhoangvinh.simple.utils.Constants
 import dagger.hilt.android.HiltAndroidApp
-import org.json.JSONObject
 import kotlin.system.exitProcess
+
 
 @HiltAndroidApp
 class MyApplication : Application() {

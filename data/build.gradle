@@ -36,12 +36,16 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api kotlinStdlib
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project(':domain')
 
+    //room
     api room
+    api roomCoroutine
+    kapt roomCompiler
 
     api retrofit
     api retrofitGsonConverter
@@ -52,8 +56,6 @@ dependencies {
     api coroutinesAndroid
 
     api dagger
-//    api daggerCompiler
-//    api daggerViewmodel
     api daggerHiltCompiler
 
     api core

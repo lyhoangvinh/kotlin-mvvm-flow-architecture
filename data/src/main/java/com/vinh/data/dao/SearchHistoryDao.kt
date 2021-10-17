@@ -3,8 +3,7 @@ package com.vinh.data.dao
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Query
-import com.vinh.data.dao.BaseDao
-import com.vinh.data.entities.avgle.SearchHistory
+import com.vinh.domain.entities.avgle.SearchHistory
 
 
 @Dao

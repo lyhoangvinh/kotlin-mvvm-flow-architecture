@@ -8,12 +8,13 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.lyhoangvinh.simple.utils.extension.observe
 import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
-import com.vinh.data.source.BaseDataSource
 import com.vinh.domain.model.Resource
 import com.vinh.domain.model.State
 import com.vinh.domain.model.Status
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 
 
 abstract class BaseViewModel : ViewModel() {
@@ -122,4 +123,19 @@ abstract class BaseViewModel : ViewModel() {
 
     suspend fun <T> Flow<Resource<T>>.execute(showProgress: Boolean, onDataSuccess: (T?) -> Unit) =
         execute(showProgress, onDataSuccess, null)
+
+    suspend fun <T> Flow<T>.execute(onDataSuccess: suspend (T) -> Unit, onDataError: ((String) -> Unit)? = null) =
+        catch { cause ->
+            /*
+              val message = ErrorEntity.getError(it).getMessage().orEmpty()
+                    publishState(State.error(message))
+                    errorConsumer?.accept(message)
+             */
+            onDataError?.invoke(cause.message.orEmpty())
+        }.collect {
+            Log.i("source", "source addRequest: resource changed: $it")
+            if (it != null) {
+                onDataSuccess.invoke(it)
+            }
+        }
 }

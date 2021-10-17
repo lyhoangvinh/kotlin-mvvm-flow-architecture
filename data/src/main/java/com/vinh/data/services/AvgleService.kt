@@ -3,7 +3,7 @@ package com.vinh.data.services
 import com.vinh.domain.response.BaseResponseAvgle
 import com.vinh.domain.response.CategoriesResponse
 import com.vinh.domain.response.CollectionsResponseAvgle
-import com.vinh.data.response.VideosResponseAvgle
+import com.vinh.domain.response.VideosResponseAvgle
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,6 +32,4 @@ interface AvgleService {
 
     @GET("jav/{query}/{page}")
     suspend fun searchJav(@Path("query") query: String, @Path("page") page: Int): Response<BaseResponseAvgle<VideosResponseAvgle>>
-
-
 }

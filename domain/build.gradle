@@ -7,16 +7,26 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion buildConfig.compileSdk
     buildToolsVersion buildConfig.tools
-}
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+}
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api kotlinStdlib
 
+    //room
     api room
+    api roomCoroutine
+    kapt roomCompiler
 
     api retrofit
     api retrofitGsonConverter
@@ -26,6 +36,9 @@ dependencies {
 
     api core
     api coreKtx
+
+    api dagger
+    api daggerHiltCompiler
 
     api lifecycleExtensions
     api lifecycleRuntime

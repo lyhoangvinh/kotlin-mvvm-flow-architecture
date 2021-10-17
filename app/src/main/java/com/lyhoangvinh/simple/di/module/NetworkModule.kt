@@ -1,21 +1,21 @@
 package com.lyhoangvinh.simple.di.module
 
 import com.google.gson.Gson
-import com.lyhoangvinh.simple.utils.Constants
-import com.vinh.data.services.AvgleService
-import com.vinh.data.services.ComicVineService
 import com.lyhoangvinh.simple.di.qualifier.OkHttpNoAuth
+import com.lyhoangvinh.simple.utils.Constants
 import com.lyhoangvinh.simple.utils.extension.makeOkHttpClientBuilder
 import com.lyhoangvinh.simple.utils.extension.makeService
+import com.vinh.data.services.AvgleService
+import com.vinh.data.services.ComicVineService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides
