@@ -1,5 +1,6 @@
 package com.vinh.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,4 +17,7 @@ interface FavoriteDao : BaseDao<Favorite> {
 
     @Query("DELETE FROM Favorite where id=:id")
     suspend fun deleteFromId(id: String): Int
+
+    @Query("SELECT COUNT(*) FROM Favorite")
+    fun getCount(): LiveData<Int>
 }
