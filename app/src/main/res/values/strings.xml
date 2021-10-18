@@ -43,6 +43,7 @@
 
     <string name="like_number">Like: %s</string>
     <string name="view_number">View: %s</string>
+    <string name="dislike_number">Dislikes: %s</string>
 
     <string name="tab_favorite">Favorite</string>
     <string name="tab_home">Home</string>

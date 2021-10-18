@@ -1,6 +1,7 @@
 package com.vinh.data.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,4 +21,7 @@ interface FavoriteDao : BaseDao<Favorite> {
 
     @Query("SELECT COUNT(*) FROM Favorite")
     fun getCount(): LiveData<Int>
+
+    @Query("SELECT * FROM Favorite")
+    fun pagingSource(): PagingSource<Int, Favorite>
 }

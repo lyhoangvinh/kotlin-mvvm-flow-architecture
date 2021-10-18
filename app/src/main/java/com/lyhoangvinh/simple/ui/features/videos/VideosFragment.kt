@@ -12,13 +12,19 @@ import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.databinding.FragmentVideoBinding
 import com.lyhoangvinh.simple.ui.base.fragment.BaseFragment
 import com.lyhoangvinh.simple.utils.extension.toColor
+import com.vinh.domain.usecases.GetFavoriteCountUseCase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class VideosFragment : BaseFragment<FragmentVideoBinding>() {
+    @FlowPreview
     @Inject
     lateinit var pagerAdapter: VideosPagerAdapter
+    @Inject
+    lateinit var getFavoriteCount: GetFavoriteCountUseCase
+
     override fun getLayoutResource() = R.layout.fragment_video
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,5 +81,9 @@ class VideosFragment : BaseFragment<FragmentVideoBinding>() {
                 }
             }
         })
+
+        getFavoriteCount().observe(viewLifecycleOwner) {
+            tvBadge?.text = it.toString()
+        }
     }
 }

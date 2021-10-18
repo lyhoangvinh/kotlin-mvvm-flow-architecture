@@ -76,4 +76,17 @@ data class Video(
     var type: Int? = null,
 
     var favorite: Boolean? = null
-)
+) {
+    fun createFavorite() : Favorite = Favorite(
+        id = vid,
+        title = title,
+        likes = likes,
+        dislikes = dislikes,
+        viewNumber = viewNumber,
+        embeddedUrl = embeddedUrl,
+        previewUrl = previewUrl,
+        previewVideoUrl = previewVideoUrl,
+        hd = hd,
+        videoUrl = videoUrl
+    )
+}

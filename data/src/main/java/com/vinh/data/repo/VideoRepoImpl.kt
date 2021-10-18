@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.vinh.data.services.AvgleService
 import com.vinh.data.source.VideoSource
 import com.vinh.domain.entities.avgle.Video
-import com.vinh.domain.interactor.GetAllFavoriteVideos
+import com.vinh.domain.interactor.GetAllFavoriteVideoIds
 import com.vinh.domain.interactor.GetAllVideos
 import com.vinh.domain.repo.VideoRepo
 import com.vinh.domain.response.BaseResponseAvgle
@@ -17,14 +17,14 @@ import javax.inject.Inject
 
 class VideoRepoImpl @Inject constructor(private val avgService: AvgleService) : VideoRepo {
    override suspend fun getAll(page: Int): Response<BaseResponseAvgle<VideosResponseAvgle>> = avgService.getAllVideos(page)
-   override fun getPaging(videos: GetAllVideos, favoriteVideos: GetAllFavoriteVideos): Flow<PagingData<Video>> {
+   override fun getPaging(videos: GetAllVideos, favoriteVideoIds: GetAllFavoriteVideoIds): Flow<PagingData<Video>> {
       return Pager(
          config = PagingConfig(
             pageSize = 50,
             enablePlaceholders = true,
             prefetchDistance = 50,
             initialLoadSize = 50),
-         pagingSourceFactory = { VideoSource(videos, favoriteVideos) }
+         pagingSourceFactory = { VideoSource(videos, favoriteVideoIds) }
       ).flow
    }
 }

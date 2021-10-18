@@ -21,6 +21,13 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite">
 
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@drawable/divider_normal"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintEnd"
             android:layout_width="0dp"
@@ -32,8 +39,7 @@
             app:layout_constraintEnd_toStartOf="@+id/cbFavorite"
             app:layout_constraintHorizontal_weight="0.6"
             app:layout_constraintStart_toEndOf="@id/constraintImage"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line1"
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
@@ -59,7 +65,19 @@
                 android:textColor="@color/colorText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
-                tools:text="Like: 123" />
+                tools:text="Likes: 123" />
+
+            <TextView
+                android:id="@+id/tvDisLikesNumber"
+                style="@style/TextApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_4dp"
+                android:text="@{String.format(@string/dislike_number, dto.dislikes)}"
+                android:textColor="@color/colorText"
+                app:layout_constraintStart_toEndOf="@id/tvLikesNumber"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="Dislikes: 123" />
 
             <TextView
                 android:id="@+id/tvView"
@@ -72,6 +90,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLikesNumber"
                 tools:text="View: 123" />
+
+            <ImageView
+                android:layout_width="@dimen/padding_50dp"
+                android:layout_height="@dimen/padding_50dp"
+                android:src="@drawable/icons8_hd_100"
+                android:visibility="@{dto.hd ? View.VISIBLE : View.GONE, default = gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDisLikesNumber"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -98,13 +125,12 @@
             app:layout_constraintEnd_toStartOf="@+id/constraintEnd"
             app:layout_constraintHorizontal_weight="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/line1">
 
             <ImageView
                 android:id="@+id/imv"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,6 +147,7 @@
                 android:background="#AB000000"
                 android:gravity="center"
                 android:padding="@dimen/padding_4dp"
+                android:singleLine="true"
                 android:text="@{dto.keyword}"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"

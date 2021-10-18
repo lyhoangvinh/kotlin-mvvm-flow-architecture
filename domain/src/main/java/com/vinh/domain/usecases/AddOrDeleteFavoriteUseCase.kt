@@ -9,7 +9,7 @@ class AddOrDeleteFavoriteUseCase @Inject constructor(private val favoriteRepo: F
         if (video.favorite == true) {
             favoriteRepo.deleteFavorite(video.vid)
         } else {
-            favoriteRepo.addFavorite(video.vid)
+            favoriteRepo.addFavorite(video)
         }
     }
 }
