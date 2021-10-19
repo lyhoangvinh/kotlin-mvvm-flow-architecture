@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.lyhoangvinh.simple.ui.features.videos.favorite.FavoriteViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/viewDelete"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
+            tools:itemCount="10"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_favorite" />
+
+        <FrameLayout
+            android:id="@+id/viewDelete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_disable_date"
+            android:onClick="@{()-> vm.delete()}"
+            android:visibility="@{vm.checkViewVisibility ? View.VISIBLE : View.GONE, default = gone}"
+            tools:visibility="visible">
+
+            <TextView
+                style="@style/TextApp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="@dimen/ts_18_sp"
+                android:textStyle="italic" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</layout>

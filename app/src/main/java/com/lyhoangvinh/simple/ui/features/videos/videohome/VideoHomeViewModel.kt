@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
 import com.vinh.domain.model.State
 import com.vinh.domain.usecases.AddOrDeleteFavoriteUseCase
@@ -42,7 +43,7 @@ class VideoHomeViewModel @Inject constructor(
     }
     override fun onFirstTimeUiCreate(lifecycleOwner: LifecycleOwner, bundle: Bundle?) {
         lifecycleOwner.lifecycleScope.launchWhenCreated {
-            getVideoHome().execute(onDataSuccess = { adapter.submitData(it) })
+            getVideoHome().cachedIn(viewModelScope).execute(onDataSuccess = { adapter.submitData(it) })
         }
     }
 }
