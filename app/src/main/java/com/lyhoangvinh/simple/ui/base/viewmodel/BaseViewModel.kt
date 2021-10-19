@@ -7,7 +7,7 @@ import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.lyhoangvinh.simple.utils.extension.observe
-import com.lyhoangvinh.simple.utils.livedata.SafeMutableLiveData
+import com.vinh.data.utils.livedata.SafeMutableLiveData
 import com.vinh.domain.model.Resource
 import com.vinh.domain.model.State
 import com.vinh.domain.model.Status

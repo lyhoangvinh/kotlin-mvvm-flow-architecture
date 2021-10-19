@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseViewModel
-import com.lyhoangvinh.simple.utils.extension.observe
 import com.vinh.domain.model.State
 import com.vinh.domain.model.Status
 

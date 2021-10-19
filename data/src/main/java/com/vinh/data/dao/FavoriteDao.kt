@@ -22,6 +22,6 @@ interface FavoriteDao : BaseDao<Favorite> {
     @Query("SELECT COUNT(*) FROM Favorite")
     fun getCount(): LiveData<Int>
 
-    @Query("SELECT * FROM Favorite")
+    @Query("SELECT * FROM Favorite ORDER BY likeTimestamp DESC")
     fun pagingSource(): PagingSource<Int, Favorite>
 }

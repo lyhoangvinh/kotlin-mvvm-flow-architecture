@@ -1,22 +1,20 @@
 package com.lyhoangvinh.simple.ui.base.fragment
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
-
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
 import com.lyhoangvinh.simple.utils.PreCachingLayoutManager
 import com.lyhoangvinh.simple.utils.hideKeyboard
+import com.vinh.domain.model.State
 import kotlinx.android.synthetic.main.view_recyclerview.*
 import javax.inject.Inject
 
@@ -31,6 +29,8 @@ abstract class BaseViewModelRecyclerViewPagingFragment<B : ViewDataBinding,
     private var isRefreshing: Boolean = false
 
     private var layoutManager: RecyclerView.LayoutManager? = null
+
+    private var errorState : LoadState.Error?= null
 
     override fun getLayoutResource() = R.layout.view_recyclerview
 
@@ -62,12 +62,18 @@ abstract class BaseViewModelRecyclerViewPagingFragment<B : ViewDataBinding,
             }
 
             errorState?.let {
+                if (hasHandleErrorState() && this.errorState != errorState) {
+                    this.errorState = errorState
+                    viewModel.stateLiveData.setValue(State.error(it))
+                }
                 Log.d("BaseViewModelRcv","errorState: ${it.error.message}")
             }
         }
     }
 
     open fun createLayoutManager(): RecyclerView.LayoutManager = PreCachingLayoutManager(activity)
+
+    open fun hasHandleErrorState() : Boolean = true
 
     open fun hasFixedSize() = false
 

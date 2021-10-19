@@ -10,4 +10,5 @@ import kotlinx.coroutines.FlowPreview
 @AndroidEntryPoint
 class VideoHomeFragment : BaseViewModelRecyclerViewPagingFragment<ViewRecyclerviewBinding, VideoHomeViewModel, VideoHomeAdapter>() {
     override val viewModel: VideoHomeViewModel by viewModels()
+    override fun hasHandleErrorState() = true
 }

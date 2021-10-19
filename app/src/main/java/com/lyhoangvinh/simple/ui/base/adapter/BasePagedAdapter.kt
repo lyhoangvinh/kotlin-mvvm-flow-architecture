@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.lyhoangvinh.simple.utils.genericCastOrNull
 import com.lyhoangvinh.simple.utils.inflate
 
 abstract class BasePagedAdapter<T: Any, B : ViewDataBinding>(diffUtil: DiffUtil.ItemCallback<T>
@@ -18,7 +17,7 @@ abstract class BasePagedAdapter<T: Any, B : ViewDataBinding>(diffUtil: DiffUtil.
     protected abstract fun onBindViewHolder(binding: B, dto: T, position: Int)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<B> {
-        return genericCastOrNull(createViewHolder(parent.inflate(itemLayoutResource())))
+        return createViewHolder(parent.inflate(itemLayoutResource()))
     }
 
     override fun onBindViewHolder(vh:  BaseViewHolder<B>, position: Int) {

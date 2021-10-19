@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/tvTitle"
             android:layout_alignEnd="@id/tvTitle"
-            android:src="@drawable/favorite" />
+            android:src="@drawable/ic_baseline_star_24" />
     </RelativeLayout>
 
     <TextView

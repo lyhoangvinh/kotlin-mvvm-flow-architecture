@@ -1,4 +1,4 @@
-package com.lyhoangvinh.simple.utils.livedata
+package com.vinh.data.utils.livedata
 
 import androidx.lifecycle.MutableLiveData
 

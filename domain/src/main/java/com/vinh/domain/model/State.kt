@@ -1,10 +1,13 @@
 package com.vinh.domain.model
 
+import androidx.paging.LoadState
+
 data class State(var status: Status, var message: String?) {
     companion object {
         fun loading() = State(Status.LOADING, null)
         fun success() = State(Status.SUCCESS, null)
         fun error(message: String? = null) = State(Status.ERROR, message)
+        fun error(loadStateError: LoadState.Error) = State(Status.ERROR, loadStateError.error.message)
     }
 
     override fun equals(other: Any?): Boolean {

@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class FavoriteRepoImpl @Inject constructor(private val favoriteDao: FavoriteDao) : FavoriteRepo {
     override suspend fun getFavorite(): List<Favorite> = favoriteDao.getFavorite()
-    override suspend fun addFavorite(video: Video): Long = favoriteDao.add(video.createFavorite())
+    override suspend fun addFavorite(video: Video): Long = favoriteDao.add(video.createFavorite(currentTimeStamp()))
     override suspend fun deleteFavorite(id: String): Int = favoriteDao.deleteFromId(id)
     override fun getCount(): LiveData<Int> = favoriteDao.getCount().distinctUntilChanged()
     override fun getPaging(): Flow<PagingData<Favorite>> = Pager(
@@ -24,4 +24,6 @@ class FavoriteRepoImpl @Inject constructor(private val favoriteDao: FavoriteDao)
         ),
         pagingSourceFactory = { favoriteDao.pagingSource() }
     ).flow
+
+    private fun currentTimeStamp() = System.currentTimeMillis() / 1000
 }

@@ -77,7 +77,7 @@ data class Video(
 
     var favorite: Boolean? = null
 ) {
-    fun createFavorite() : Favorite = Favorite(
+    fun createFavorite(likeTimeStamp: Long) : Favorite = Favorite(
         id = vid,
         title = title,
         likes = likes,
@@ -87,6 +87,7 @@ data class Video(
         previewUrl = previewUrl,
         previewVideoUrl = previewVideoUrl,
         hd = hd,
-        videoUrl = videoUrl
+        videoUrl = videoUrl,
+        likeTimeStamp = likeTimeStamp
     )
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.lyhoangvinh.simple.ui.base.viewmodel.BaseListViewModel
+import com.vinh.domain.model.State
 import com.vinh.domain.usecases.AddOrDeleteFavoriteUseCase
 import com.vinh.domain.usecases.GetVideoHomeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,11 +28,14 @@ class VideoHomeViewModel @Inject constructor(
 
     override fun initAdapter(adapter: VideoHomeAdapter) {
         super.initAdapter(adapter)
-        adapter.addClickLike {
+        adapter.addClickLike { video, cbChange ->
             viewModelScope.launch(Dispatchers.IO) {
-                addOrDeleteFavorite(it)
+                publishState(State.loading())
+                addOrDeleteFavorite(video)
                 withContext(Dispatchers.Main) {
+                    cbChange()
                     adapter.refresh()
+                    publishState(State.success())
                 }
             }
         }

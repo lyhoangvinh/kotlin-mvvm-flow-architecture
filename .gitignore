@@ -235,3 +235,4 @@ build/kotlin/sessions/kotlin-compiler-3770180944865977673.salive
 .gradle/6.7.1/javaCompile/javaCompile.lock
 .gradle/6.7.1/javaCompile/taskHistory.bin
 .idea/assetWizardSettings.xml
+.idea/libraries/Gradle__com_bigkoo_svprogresshud_1_0_6_aar.xml

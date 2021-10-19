@@ -99,7 +99,7 @@ fun ImageView.loadImageNotFit(url: String) {
     }
 }
 
-fun Activity.createDialog(): Dialog? {
+fun Activity.createDialog(): Dialog {
     val progressDialog = Dialog(this)
     progressDialog.let {
         it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

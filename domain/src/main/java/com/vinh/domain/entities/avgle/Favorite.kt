@@ -15,5 +15,6 @@ data class Favorite(
     var previewUrl: String?,
     var previewVideoUrl: String?,
     var hd: Boolean?,
-    var videoUrl: String?
+    var videoUrl: String?,
+    var likeTimeStamp: Long?
 )

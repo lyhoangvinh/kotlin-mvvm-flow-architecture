@@ -1,13 +1,12 @@
 package com.lyhoangvinh.simple.ui.base.activity
 
-import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.bigkoo.svprogresshud.SVProgressHUD
 import com.lyhoangvinh.simple.ui.base.interfaces.UiRefreshable
-import com.lyhoangvinh.simple.utils.createDialog
 
 /**
  * Base activity that will be injected automatically by implementing {@link HasSupportFragmentInjector}
@@ -17,7 +16,7 @@ import com.lyhoangvinh.simple.utils.createDialog
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    private var dialog: Dialog? = null
+    private var dialog: SVProgressHUD? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (loading) {
             hideProgress()
             if (dialog == null) {
-                dialog = createDialog()
+                dialog = SVProgressHUD(this)
             }
             dialog?.show()
         } else {

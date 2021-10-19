@@ -118,6 +118,9 @@ ext {
     androidxSupportVectordrawableAnimated = "androidx.vectordrawable:vectordrawable-animated:$vertorDrawableVersion"
     androidxSupportViewpager2 = "androidx.viewpager2:viewpager2:$androidxSupportVersion"
 
+    //loading
+    bigkoo = 'com.bigkoo:svprogresshud:1.0.6'
+
     //lifecycle
     lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"

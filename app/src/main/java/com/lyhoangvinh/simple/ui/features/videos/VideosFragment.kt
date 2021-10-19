@@ -35,7 +35,7 @@ class VideosFragment : BaseFragment<FragmentVideoBinding>() {
         var tvTitle: TextView? = null
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             var title = R.string.tab_favorite
-            var icon = R.drawable.favorite
+            var icon = R.drawable.ic_baseline_star_24
             when (position) {
                 0 -> {
                     title = R.string.tab_home

@@ -81,6 +81,8 @@ dependencies {
     implementation rootProject.androidxSupportVectordrawableAnimated
     implementation rootProject.androidxSupportViewpager2
 
+    implementation rootProject.bigkoo
+
     //lifecycle
     implementation rootProject.lifecycleExtensions
     implementation rootProject.lifecycleRuntime

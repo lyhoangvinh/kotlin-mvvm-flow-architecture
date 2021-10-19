@@ -20,9 +20,9 @@ class VideoHomeAdapter @Inject constructor() :
             oldItem == newItem
     }) {
 
-    private var onClickLike: ((Video) -> Unit)? = null
+    private var onClickLike: ((Video, ()-> Unit) -> Unit)? = null
 
-    fun addClickLike(onClickLike: ((Video) -> Unit)? = null) {
+    fun addClickLike(onClickLike: ((Video, ()-> Unit) -> Unit)? = null) {
         this.onClickLike = onClickLike
     }
 
@@ -32,7 +32,10 @@ class VideoHomeAdapter @Inject constructor() :
         object : BaseViewHolder<ItemVideosHome2Binding>(itemView) {}.apply {
             binding.cbFavorite.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
-                    onClickLike?.invoke(it)
+                    val favorite = it.favorite?:false
+                    onClickLike?.invoke(it) {
+                        binding.cbFavorite.setCheckMarkDrawable(if (!favorite) R.drawable.favorite else R.drawable.add_favorite)
+                    }
                 }
             }
         }

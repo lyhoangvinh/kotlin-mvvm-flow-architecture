@@ -35,7 +35,7 @@
             android:layout_marginStart="@dimen/padding_8dp"
             android:layout_marginTop="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/line3"
             app:layout_constraintEnd_toStartOf="@+id/cbFavorite"
             app:layout_constraintHorizontal_weight="0.6"
             app:layout_constraintStart_toEndOf="@id/constraintImage"
@@ -47,13 +47,15 @@
                 style="@style/TextApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:padding="@dimen/padding_4dp"
                 android:text="@{dto.title}"
                 android:textColor="@color/colorBack"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="性慾まみれの三十路F乳人妻 淺宮ちなつ" />
+                tools:text="性慾まみれの三十路F乳人妻 淺宮ちなつ性慾まみれの三十路F乳人妻 淺宮ちなつ性慾まみれの三十路F乳人妻 淺宮ちなつ淺宮ちなつ性慾まみれの三十路F乳人妻" />
 
             <TextView
                 android:id="@+id/tvLikesNumber"
@@ -122,6 +124,7 @@
             android:layout_marginStart="@dimen/padding_8dp"
             android:layout_marginTop="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_8dp"
+            app:layout_constraintBottom_toTopOf="@id/line3"
             app:layout_constraintEnd_toStartOf="@+id/constraintEnd"
             app:layout_constraintHorizontal_weight="0.4"
             app:layout_constraintStart_toStartOf="parent"
