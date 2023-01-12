@@ -7,7 +7,7 @@ import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.databinding.ItemVideosHome2Binding
 import com.lyhoangvinh.simple.ui.base.adapter.BasePagedAdapter
 import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.avgle.Video
 import javax.inject.Inject
 
 class VideoHomeAdapter @Inject constructor() :

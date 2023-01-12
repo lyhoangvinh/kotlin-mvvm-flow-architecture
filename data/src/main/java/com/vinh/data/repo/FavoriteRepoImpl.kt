@@ -7,10 +7,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.vinh.data.dao.FavoriteDao
-import com.vinh.domain.entities.FavoriteIntent
-import com.vinh.domain.entities.FavoriteItem
-import com.vinh.domain.entities.avgle.Favorite
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.FavoriteIntent
+import com.vinh.domain.model.entities.FavoriteItem
+import com.vinh.domain.model.entities.avgle.Favorite
+import com.vinh.domain.model.entities.avgle.Video
 import com.vinh.domain.repo.FavoriteRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

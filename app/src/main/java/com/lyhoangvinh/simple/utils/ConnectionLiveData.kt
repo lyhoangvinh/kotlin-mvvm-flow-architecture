@@ -8,7 +8,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.lyhoangvinh.simple.MyApplication
 import com.lyhoangvinh.simple.receiver.NetworkReceiver
-import com.vinh.data.entities.Connection
+import com.vinh.domain.model.entities.Connection
 import javax.inject.Inject
 
 

@@ -4,7 +4,7 @@
 
     <data>
         <variable name="dto"
-                  type="com.vinh.domain.entities.avgle.Category"/>
+                  type="com.vinh.domain.model.entities.avgle.Category"/>
     </data>
 
     <RelativeLayout

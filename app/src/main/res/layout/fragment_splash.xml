@@ -13,39 +13,57 @@
             android:layout_gravity="top"
             android:src="@drawable/kotlin_logo" />
 
-        <Button
-            android:id="@+id/btnRcv"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rcv"
-            android:textColor="@color/colorText" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnGetApi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get Api"
-            android:textColor="@color/colorText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnAvg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Item View Model"
-            android:textColor="@color/colorText" />
+                <Button
+                    android:id="@+id/btnRcv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rcv"
+                    android:textColor="@color/colorText" />
 
-        <Button
-            android:id="@+id/btnTestSealedClass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Test Sealed Class Adapter"
-            android:textColor="@color/colorText" />
+                <Button
+                    android:id="@+id/btnGetApi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Get Api"
+                    android:textColor="@color/colorText" />
 
-        <Button
-            android:id="@+id/btnVideo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Videos"
-            android:textColor="@color/colorText" />
+                <Button
+                    android:id="@+id/btnAvg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Item View Model"
+                    android:textColor="@color/colorText" />
+
+                <Button
+                    android:id="@+id/btnTestSealedClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Test Sealed Class Adapter"
+                    android:textColor="@color/colorText" />
+
+                <Button
+                    android:id="@+id/btnVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Videos In Memory"
+                    android:textColor="@color/colorText" />
+
+                <Button
+                    android:id="@+id/btnVideoRemoteMediator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Videos in Database"
+                    android:textColor="@color/colorText" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

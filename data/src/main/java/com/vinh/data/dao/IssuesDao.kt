@@ -3,8 +3,7 @@ package com.vinh.data.dao
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
-import com.vinh.data.dao.BaseDao
-import com.vinh.data.entities.comic.Issues
+import com.vinh.domain.model.entities.comic.Issues
 
 @Dao
 interface IssuesDao : BaseDao<Issues> {

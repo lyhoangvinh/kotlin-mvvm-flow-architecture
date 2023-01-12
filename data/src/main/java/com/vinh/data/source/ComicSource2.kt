@@ -1,7 +1,7 @@
 package com.vinh.data.source
 
 import android.util.Log
-import com.vinh.data.entities.comic.Issues
+import com.vinh.domain.model.entities.comic.Issues
 import com.vinh.domain.response.BaseResponseComic
 import com.vinh.data.services.ComicVineService
 import com.vinh.data.Constants

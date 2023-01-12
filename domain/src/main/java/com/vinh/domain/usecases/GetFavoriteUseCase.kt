@@ -1,6 +1,6 @@
 package com.vinh.domain.usecases
 
-import com.vinh.domain.entities.FavoriteItem
+import com.vinh.domain.model.entities.FavoriteItem
 import com.vinh.domain.repo.FavoriteRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest

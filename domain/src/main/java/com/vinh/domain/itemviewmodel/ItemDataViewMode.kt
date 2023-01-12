@@ -1,6 +1,6 @@
 package com.vinh.domain.itemviewmodel
 
-import com.vinh.domain.entities.avgle.Category
+import com.vinh.domain.model.entities.avgle.Category
 import com.vinh.domain.model.ItemViewModel
 
 sealed class ItemData : ItemViewModel

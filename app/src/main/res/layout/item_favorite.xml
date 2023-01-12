@@ -9,7 +9,7 @@
 
         <variable
             name="dto"
-            type="com.vinh.domain.entities.FavoriteItem" />
+            type="com.vinh.domain.model.entities.FavoriteItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -30,5 +30,9 @@ class SplashFragment : BaseViewModelFragment<FragmentSplashBinding, SplashViewMo
         binding.btnVideo.setOnClickListener {
             getNavController()?.navigate(SplashFragmentDirections.toVideo())
         }
+
+        binding.btnVideoRemoteMediator.setOnClickListener {
+            getNavController()?.navigate(SplashFragmentDirections.toVideoInDB())
+        }
     }
 }

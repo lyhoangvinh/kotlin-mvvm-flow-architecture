@@ -2,7 +2,7 @@ package com.vinh.data.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.avgle.Video
 import com.vinh.domain.interactor.GetAllFavoriteVideoIds
 import com.vinh.domain.interactor.GetAllVideos
 

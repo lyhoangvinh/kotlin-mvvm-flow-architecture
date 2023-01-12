@@ -11,7 +11,7 @@
 
         <variable
             name="dto"
-            type="com.vinh.domain.entities.avgle.Video" />
+            type="com.vinh.domain.model.entities.avgle.Video" />
 
     </data>
 

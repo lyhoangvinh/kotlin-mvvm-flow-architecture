@@ -6,7 +6,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vinh.domain.entities.avgle.Favorite
+import com.vinh.domain.model.entities.avgle.Favorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao

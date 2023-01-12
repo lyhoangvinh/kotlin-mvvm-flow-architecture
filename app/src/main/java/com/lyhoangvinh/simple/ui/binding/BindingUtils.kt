@@ -13,9 +13,9 @@ import androidx.databinding.BindingAdapter
 import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.ui.widget.RotateLoading
 import com.lyhoangvinh.simple.utils.*
-import com.vinh.data.entities.Connection
+import com.vinh.domain.model.entities.Connection
 import com.vinh.data.entities.DataEmpty
-import com.vinh.data.entities.VisibilityView
+import com.vinh.domain.model.entities.VisibilityView
 
 object BindingUtils {
 

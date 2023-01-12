@@ -2,10 +2,10 @@ package com.vinh.domain.repo
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
-import com.vinh.domain.entities.FavoriteIntent
-import com.vinh.domain.entities.FavoriteItem
-import com.vinh.domain.entities.avgle.Favorite
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.FavoriteIntent
+import com.vinh.domain.model.entities.FavoriteItem
+import com.vinh.domain.model.entities.avgle.Favorite
+import com.vinh.domain.model.entities.avgle.Video
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteRepo {

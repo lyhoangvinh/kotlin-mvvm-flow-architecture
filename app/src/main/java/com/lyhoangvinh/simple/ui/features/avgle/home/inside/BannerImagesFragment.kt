@@ -3,7 +3,7 @@ package com.lyhoangvinh.simple.ui.features.avgle.home.inside
 import android.os.Bundle
 import android.view.View
 import com.lyhoangvinh.simple.R
-import com.vinh.domain.entities.avgle.Collection
+import com.vinh.domain.model.entities.avgle.Collection
 import com.lyhoangvinh.simple.databinding.FragmentBannerImagesBinding
 import com.lyhoangvinh.simple.ui.base.fragment.BaseFragment
 import com.lyhoangvinh.simple.utils.Constants

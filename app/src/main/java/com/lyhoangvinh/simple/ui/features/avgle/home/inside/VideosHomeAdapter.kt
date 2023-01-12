@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.DiffUtil
 import com.lyhoangvinh.simple.R
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.avgle.Video
 import com.lyhoangvinh.simple.databinding.ItemVideoHomeBinding
 import com.lyhoangvinh.simple.ui.base.adapter.BaseListAdapter
 import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder

@@ -1,6 +1,6 @@
 package com.vinh.domain.itemviewmodel
 
-import com.vinh.domain.entities.avgle.SearchHistory
+import com.vinh.domain.model.entities.avgle.SearchHistory
 import com.vinh.domain.model.ItemViewModel
 
 

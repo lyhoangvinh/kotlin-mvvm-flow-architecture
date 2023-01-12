@@ -10,7 +10,7 @@
 
         <variable
             name="dto"
-            type="com.vinh.data.entities.comic.Issues" />
+            type="com.vinh.domain.model.entities.comic.Issues" />
 
     </data>
 

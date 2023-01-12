@@ -2,7 +2,7 @@ package com.vinh.domain.repo
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
-import com.vinh.data.entities.comic.Issues
+import com.vinh.domain.model.entities.comic.Issues
 import com.vinh.domain.model.Resource
 import com.vinh.domain.response.BaseResponseComic
 import kotlinx.coroutines.flow.Flow

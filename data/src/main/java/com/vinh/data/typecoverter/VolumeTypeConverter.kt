@@ -2,7 +2,7 @@ package com.vinh.data.typecoverter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.lyhoangvinh.simple.data.entities.comic.Volume
+import com.vinh.domain.model.entities.comic.Volume
 
 class VolumeTypeConverter {
 

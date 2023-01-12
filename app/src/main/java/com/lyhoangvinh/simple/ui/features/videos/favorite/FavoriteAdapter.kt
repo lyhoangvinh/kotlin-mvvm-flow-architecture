@@ -8,7 +8,7 @@ import com.lyhoangvinh.simple.R
 import com.lyhoangvinh.simple.databinding.ItemFavoriteBinding
 import com.lyhoangvinh.simple.ui.base.adapter.BaseListAdapter
 import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder
-import com.vinh.domain.entities.FavoriteItem
+import com.vinh.domain.model.entities.FavoriteItem
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 

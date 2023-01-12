@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.utils.ConnectionLiveData
-import com.vinh.data.entities.Connection
+import com.vinh.domain.model.entities.Connection
 import javax.inject.Inject
 
 class ConnectionObservable @Inject constructor(private val connectionLive: ConnectionLiveData) :

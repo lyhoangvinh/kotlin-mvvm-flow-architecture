@@ -1,6 +1,6 @@
 package com.vinh.domain.usecases
 
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.avgle.Video
 import com.vinh.domain.repo.FavoriteRepo
 import javax.inject.Inject
 

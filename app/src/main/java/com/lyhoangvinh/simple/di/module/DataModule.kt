@@ -21,7 +21,7 @@ class DataModule {
     fun providesRoomDatabase(@ApplicationContext context: Context): DatabaseManager {
         return Room.databaseBuilder(context, DatabaseManager::class.java, "my-database")
             .fallbackToDestructiveMigration()
-            .allowMainThreadQueries()
+//            .allowMainThreadQueries()
             .build()
     }
 
@@ -52,4 +52,8 @@ class DataModule {
     @Provides
     @Singleton
     fun provideSearchHistoryDao(databaseManager: DatabaseManager): SearchHistoryDao = databaseManager.searchHistoryDao()
+
+    @Provides
+    @Singleton
+    fun provideVideoRemoteKeyDao(databaseManager: DatabaseManager): VideoRemoteKeyDao = databaseManager.videoRemoteKeyDao()
 }

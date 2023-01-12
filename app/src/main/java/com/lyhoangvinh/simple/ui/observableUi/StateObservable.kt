@@ -4,7 +4,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.lyhoangvinh.simple.BR
 import com.vinh.data.entities.DataEmpty
-import com.vinh.data.entities.VisibilityView
+import com.vinh.domain.model.entities.VisibilityView
 import javax.inject.Inject
 
 class StateObservable @Inject constructor() : BaseObservable() {

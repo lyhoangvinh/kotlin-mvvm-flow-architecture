@@ -1,6 +1,6 @@
 package com.vinh.data.services
 import com.lyhoangvinh.simple.utils.livedata.ApiLiveData
-import com.vinh.data.entities.comic.Issues
+import com.vinh.domain.model.entities.comic.Issues
 import com.vinh.domain.model.Resource
 import com.vinh.domain.response.BaseResponseComic
 import retrofit2.Call

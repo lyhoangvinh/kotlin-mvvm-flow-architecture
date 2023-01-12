@@ -3,7 +3,7 @@ package com.vinh.domain.response
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.vinh.data.entities.Entities
-import com.vinh.domain.entities.avgle.Video
+import com.vinh.domain.model.entities.avgle.Video
 
 data class VideosResponseAvgle(
 
