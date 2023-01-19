@@ -2,8 +2,12 @@ package com.vinh.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.asFlow
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.vinh.data.utils.BaseSharedPreferenceLiveData
 import com.vinh.data.utils.SingletonHolder
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by LyHoangVinh on 11/5/2017.
@@ -52,4 +56,24 @@ class SharedPrefs private constructor(application: Context) {
     fun clearDataByKey(key: String) {
         mSharedPreferences.edit().remove(key).apply()
     }
+
+    operator fun <T> get(
+        key: String,
+        anonymousClass: Class<T>,
+        defValue: T
+    ): Flow<T> = object : BaseSharedPreferenceLiveData<T>(this, key, defValue) {
+        override fun getValueFromPreferences(key: String, defValue: T): T =
+            get(key, anonymousClass) ?: defValue
+    }.asFlow()
+
+//    operator fun <T> get(
+//        key: String,
+//        typeOfT: TypeToken<T>,
+//        defValue: T
+//    ): Flow<T> = object : BaseSharedPreferenceLiveData<T>(
+//        this, key, defValue
+//    ) {
+//        override fun getValueFromPreferences(key: String, defValue: T) =
+//            get(key, typeOfT) ?: defValue
+//    }.asFlow()
 }

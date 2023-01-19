@@ -1,6 +1,9 @@
 package com.lyhoangvinh.simple.ui.features.videos.videohome
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import com.lyhoangvinh.simple.BR
 import com.lyhoangvinh.simple.R
@@ -9,6 +12,7 @@ import com.lyhoangvinh.simple.ui.base.adapter.BasePagedAdapter
 import com.lyhoangvinh.simple.ui.base.adapter.BaseViewHolder
 import com.vinh.domain.model.entities.avgle.Video
 import javax.inject.Inject
+
 
 class VideoHomeAdapter @Inject constructor() :
     BasePagedAdapter<Video, ItemVideosHome2Binding>(object :
@@ -20,9 +24,9 @@ class VideoHomeAdapter @Inject constructor() :
             oldItem == newItem
     }) {
 
-    private var onClickLike: ((Video, ()-> Unit) -> Unit)? = null
+    private var onClickLike: ((Video, () -> Unit) -> Unit)? = null
 
-    fun addClickLike(onClickLike: ((Video, ()-> Unit) -> Unit)? = null) {
+    fun addClickLike(onClickLike: ((Video, () -> Unit) -> Unit)? = null) {
         this.onClickLike = onClickLike
     }
 
@@ -30,9 +34,15 @@ class VideoHomeAdapter @Inject constructor() :
 
     override fun createViewHolder(itemView: View): BaseViewHolder<ItemVideosHome2Binding> =
         object : BaseViewHolder<ItemVideosHome2Binding>(itemView) {}.apply {
+            binding.root.setOnClickListener {
+                getItem(bindingAdapterPosition)?.let { video ->
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(video.previewVideoUrl))
+                    it.context.startActivity(browserIntent)
+                }
+            }
             binding.cbFavorite.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
-                    val favorite = it.favorite?:false
+                    val favorite = it.favorite ?: false
                     onClickLike?.invoke(it) {
                         binding.cbFavorite.setCheckMarkDrawable(if (!favorite) R.drawable.favorite else R.drawable.add_favorite)
                     }

@@ -2,6 +2,7 @@ package com.lyhoangvinh.simple.utils
 
 
 import com.vinh.data.SharedPrefs
+import com.vinh.data.utils.BaseSharedPreferenceLiveData
 import javax.inject.Inject
 
 class OptionSharedPreferenceLiveData @Inject constructor(sharedPrefs: SharedPrefs) :

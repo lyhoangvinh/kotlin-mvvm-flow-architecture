@@ -1,7 +1,10 @@
 package com.vinh.domain.usecases
 
+import androidx.paging.map
 import com.vinh.domain.interactor.*
+import com.vinh.domain.model.ItemViewModel
 import com.vinh.domain.repo.VideoRepo
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetVideoPagingSourceByExecutor @Inject constructor(
@@ -21,5 +24,5 @@ class GetVideoPagingSourceByExecutor @Inject constructor(
         deleteVideoByExecutor = deleteVideoByExecutor,
         addVideoRemoteKey = addVideoRemoteKey,
         addVideoList = addVideoList
-    )
+    ) 
 }

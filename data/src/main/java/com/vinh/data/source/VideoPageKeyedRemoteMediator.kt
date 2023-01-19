@@ -24,34 +24,22 @@ class VideoPageKeyedRemoteMediator(
     private val addVideoList: AddVideoList
 ) : RemoteMediator<Int, Video>() {
 
-    override suspend fun initialize(): InitializeAction {
-        // Require that remote REFRESH is launched on initial load and succeeds before launching
-        // remote PREPEND / APPEND.
-        return InitializeAction.LAUNCH_INITIAL_REFRESH
-    }
+    override suspend fun initialize(): InitializeAction = InitializeAction.LAUNCH_INITIAL_REFRESH
 
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, Video>
     ): MediatorResult {
         try {
-            // Get the closest item from PagingState that we want to load data around.
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> 0
                 LoadType.PREPEND -> return MediatorResult.Success(
                     endOfPaginationReached = true
                 )
                 LoadType.APPEND -> {
-                    // Query DB for SubredditRemoteKey for the subreddit.
-                    // SubredditRemoteKey is a wrapper object we use to keep track of page keys we
-                    // receive from the Reddit API to fetch the next or previous page.
                     val remoteKey = databaseManager.withTransaction {
                         getVideoRemoteKeyByExecutor(executor)
                     }
-
-                    // We must explicitly check if the page key is null when appending, since the
-                    // Reddit API informs the end of the list by returning null for page key, but
-                    // passing a null key to Reddit API will fetch the initial page.
                     if (remoteKey.nextPageKey == null) {
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }

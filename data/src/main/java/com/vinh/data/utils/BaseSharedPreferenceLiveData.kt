@@ -1,4 +1,4 @@
-package com.lyhoangvinh.simple.utils
+package com.vinh.data.utils
 
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
