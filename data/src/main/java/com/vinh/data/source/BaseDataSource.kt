@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
+import androidx.paging.*
 import com.vinh.domain.model.ItemViewModel
 import com.vinh.domain.model.Resource
 import com.vinh.domain.model.Status
@@ -122,6 +123,38 @@ abstract class BaseDataSource {
                 emit(Resource.error(responseStatus.message.orEmpty()))
             }
         }
+
+    fun <K : Any, T : Any> pagingData(
+        source: suspend (K?) -> List<T>,
+        prevKey: (K?) -> K?,
+        nextKey: (K?) -> K?,
+        refreshKey: (state: PagingState<K, T>) -> K?,
+        pageSize: Int,
+        enablePlaceholders: Boolean = true
+    ): Flow<PagingData<T>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = pageSize,
+                enablePlaceholders = enablePlaceholders
+            ),
+            pagingSourceFactory = {
+                object : PagingSource<K, T>() {
+                    override fun getRefreshKey(state: PagingState<K, T>): K? = refreshKey(state)
+                    override suspend fun load(params: LoadParams<K>): LoadResult<K, T> {
+                        val paramsKey = params.key
+                        return try {
+                            LoadResult.Page(
+                                data = source(paramsKey),
+                                prevKey = prevKey(paramsKey),
+                                nextKey = nextKey(paramsKey)
+                            )
+                        } catch (e: Exception) {
+                            return LoadResult.Error(e)
+                        }
+                    }
+                }
+            }).flow
+    }
 }
 
 
