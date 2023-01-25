@@ -197,7 +197,7 @@ abstract class BaseDataSource {
                 pagingSourceFactory = {
                     pagingSourceFactory()
                 }
-            )
+            ).flow
         }
     }
 
