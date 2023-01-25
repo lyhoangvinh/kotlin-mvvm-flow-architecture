@@ -2,7 +2,7 @@ package com.vinh.data.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.vinh.data.Constants
+import com.vinh.domain.Constants
 import com.vinh.domain.model.entities.comic.Issues
 import com.vinh.data.services.ComicVineService
 

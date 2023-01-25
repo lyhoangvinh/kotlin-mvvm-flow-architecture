@@ -2,7 +2,6 @@ package com.vinh.data.utils.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.lyhoangvinh.simple.utils.livedata.ApiLiveData
 import com.vinh.domain.model.Resource
 import retrofit2.Call
 import retrofit2.CallAdapter

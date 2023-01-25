@@ -8,7 +8,7 @@ import com.vinh.data.services.ComicVineService
 import com.vinh.data.source.ComicSource
 import com.vinh.data.source.ComicSource2
 import com.skydoves.sandwich.*
-import com.vinh.data.Constants
+import com.vinh.domain.Constants
 import com.vinh.domain.model.entities.comic.Issues
 import com.vinh.domain.model.Resource
 import com.vinh.domain.response.BaseResponseComic

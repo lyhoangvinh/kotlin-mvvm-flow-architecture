@@ -1,4 +1,4 @@
-package com.vinh.data
+package com.vinh.data.manager
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

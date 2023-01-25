@@ -1,7 +1,7 @@
 package com.lyhoangvinh.simple.utils
 
 
-import com.vinh.data.SharedPrefs
+import com.vinh.data.manager.SharedPrefs
 import com.vinh.data.utils.BaseSharedPreferenceLiveData
 import javax.inject.Inject
 

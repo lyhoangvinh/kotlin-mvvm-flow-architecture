@@ -1,6 +1,5 @@
 package com.vinh.data.utils.network
 
-import com.lyhoangvinh.simple.utils.network.NetworkResourceCall
 import com.vinh.domain.model.Resource
 import retrofit2.Call
 import retrofit2.CallAdapter

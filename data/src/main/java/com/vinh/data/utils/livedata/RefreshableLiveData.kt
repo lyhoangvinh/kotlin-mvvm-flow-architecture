@@ -1,8 +1,7 @@
-package com.lyhoangvinh.simple.utils.livedata
+package com.vinh.data.utils.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 
 class RefreshableLiveData<T>(
     private val source: () -> LiveData<T>

@@ -5,7 +5,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.vinh.data.DatabaseManager
+import com.vinh.data.manager.DatabaseManager
 import com.vinh.domain.interactor.*
 import com.vinh.domain.model.entities.avgle.Video
 import com.vinh.domain.model.entities.avgle.VideoRemoteKey

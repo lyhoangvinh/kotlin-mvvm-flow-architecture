@@ -1,6 +1,5 @@
-package com.lyhoangvinh.simple.utils.livedata
+package com.vinh.data.utils.livedata
 
-import com.vinh.data.utils.livedata.LiveDataCallAdapter
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType

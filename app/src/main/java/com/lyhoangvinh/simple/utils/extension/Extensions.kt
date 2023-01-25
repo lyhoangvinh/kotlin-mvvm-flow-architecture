@@ -5,8 +5,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.lyhoangvinh.simple.BuildConfig
-import com.lyhoangvinh.simple.utils.livedata.LiveDataCallAdapterFactory
-import com.lyhoangvinh.simple.utils.network.NetworkResourceAdapterFactory
+import com.vinh.data.utils.livedata.LiveDataCallAdapterFactory
+import com.vinh.data.utils.network.NetworkResourceAdapterFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import okhttp3.OkHttpClient

@@ -11,7 +11,9 @@ import com.vinh.domain.model.Status
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import retrofit2.Response
+import java.io.IOException
 
 
 /**
@@ -57,9 +59,11 @@ abstract class BaseDataSource {
             }
         }
 
-    fun <T: Any, A> resultLiveData(databaseQuery: () -> LiveData<T>,
-                              networkCall: suspend () -> Response<A>,
-                              saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
+    fun <T : Any, A> resultLiveData(
+        databaseQuery: () -> LiveData<T>,
+        networkCall: suspend () -> Response<A>,
+        saveCallResult: suspend (A) -> Unit
+    ): LiveData<Resource<T>> =
         liveData(Dispatchers.IO) {
             emit(Resource.loading())
             val source = databaseQuery.invoke().map { Resource.success(it) }
@@ -84,13 +88,13 @@ abstract class BaseDataSource {
             }
         }
 
-    protected suspend fun <T>  resultFlow2(call: suspend () -> Resource<T>): Flow<Resource<T>> =
+    protected suspend fun <T> resultFlow2(call: suspend () -> Resource<T>): Flow<Resource<T>> =
         flow {
             emit(Resource.loading())
-            val responseStatus : Resource<T> = try {
-                 call.invoke()
+            val responseStatus: Resource<T> = try {
+                call.invoke()
             } catch (e: Exception) {
-                 error(e.message ?: e.toString())
+                error(e.message ?: e.toString())
             }
             if (responseStatus.status == Status.SUCCESS) {
                 emit(responseStatus)
@@ -99,8 +103,10 @@ abstract class BaseDataSource {
             }
         }
 
-    protected suspend fun <T> resultFlow(call: suspend () -> Response<T>,
-                                         saveCallResult: suspend (T?) -> Unit)
+    protected suspend fun <T> resultFlow(
+        call: suspend () -> Response<T>,
+        saveCallResult: suspend (T?) -> Unit
+    )
             : Flow<Resource<T>> =
         flow {
             emit(Resource.loading())
@@ -113,7 +119,10 @@ abstract class BaseDataSource {
             }
         }
 
-    protected suspend fun <T> resultFlowMapper(call: suspend () -> Response<T>, mapCallResult: suspend (T?) -> List<ItemViewModel>): Flow<Resource<List<ItemViewModel>>> =
+    protected suspend fun <T> resultFlowMapper(
+        call: suspend () -> Response<T>,
+        mapCallResult: suspend (T?) -> List<ItemViewModel>
+    ): Flow<Resource<List<ItemViewModel>>> =
         flow {
             emit(Resource.loading())
             val responseStatus = getResource { call.invoke() }
@@ -124,37 +133,74 @@ abstract class BaseDataSource {
             }
         }
 
-    fun <K : Any, T : Any> pagingData(
-        source: suspend (K?) -> List<T>,
-        prevKey: (K?) -> K?,
-        nextKey: (K?) -> K?,
-        refreshKey: (state: PagingState<K, T>) -> K?,
-        pageSize: Int,
-        enablePlaceholders: Boolean = true
-    ): Flow<PagingData<T>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = pageSize,
-                enablePlaceholders = enablePlaceholders
-            ),
-            pagingSourceFactory = {
-                object : PagingSource<K, T>() {
-                    override fun getRefreshKey(state: PagingState<K, T>): K? = refreshKey(state)
-                    override suspend fun load(params: LoadParams<K>): LoadResult<K, T> {
-                        val paramsKey = params.key
-                        return try {
-                            LoadResult.Page(
-                                data = source(paramsKey),
-                                prevKey = prevKey(paramsKey),
-                                nextKey = nextKey(paramsKey)
-                            )
-                        } catch (e: Exception) {
-                            return LoadResult.Error(e)
+    sealed class Source<K : Any, T : Any> {
+        abstract class Create<K : Any, T : Any>(pageSize: Int, enablePlaceholders: Boolean) : Source<K, T>() {
+            abstract val source: suspend (K) -> List<T>
+            abstract val prevKey: (K) -> K?
+            abstract val nextKey: (K, Boolean) -> K?
+            abstract val refreshKey: (state: PagingState<K, T>) -> K?
+            abstract val defaultKey: K
+            val flow = Pager(
+                config = PagingConfig(
+                    pageSize = pageSize,
+                    enablePlaceholders = enablePlaceholders
+                ),
+                pagingSourceFactory = {
+                    object : PagingSource<K, T>() {
+                        override fun getRefreshKey(state: PagingState<K, T>): K? = refreshKey(state)
+                        override suspend fun load(params: LoadParams<K>): LoadResult<K, T> {
+                            val paramsKey = params.key ?: defaultKey
+                            return try {
+                                val data = source(paramsKey)
+                                LoadResult.Page(
+                                    data = data,
+                                    prevKey = prevKey(paramsKey),
+                                    nextKey = nextKey(paramsKey, data.isEmpty())
+                                )
+                            } catch (e: Exception) {
+                                return LoadResult.Error(e)
+                            }
                         }
                     }
+                }).flow
+
+        }
+        abstract class RemoteCreate<K: Any, T: Any>(pageSize: Int, enablePlaceholders: Boolean) : Source<K, T>(){
+            abstract val pagingSourceFactory: () -> PagingSource<K, T>
+            abstract val loadKey : (LoadType) -> K
+            abstract val loadData: (K) -> List<T>
+            abstract suspend fun databaseWithTransaction(loadType: LoadType, key: K, data: List<T>)
+            @OptIn(ExperimentalPagingApi::class)
+            val flow = Pager(
+                config = PagingConfig(
+                    pageSize = pageSize,
+                    enablePlaceholders = enablePlaceholders
+                ),
+                remoteMediator = object : RemoteMediator<K, T>() {
+                    override suspend fun initialize(): InitializeAction = InitializeAction.LAUNCH_INITIAL_REFRESH
+                    override suspend fun load(
+                        loadType: LoadType,
+                        state: PagingState<K, T>
+                    ): MediatorResult {
+                        return try {
+                            val key = loadKey(loadType)
+                            val data = loadData(key)
+                            databaseWithTransaction(loadType, key, data)
+                            MediatorResult.Success(endOfPaginationReached = data.isEmpty())
+                        } catch (e: IOException) {
+                            MediatorResult.Error(e)
+                        } catch (e: HttpException) {
+                            MediatorResult.Error(e)
+                        }
+                    }
+                },
+                pagingSourceFactory = {
+                    pagingSourceFactory()
                 }
-            }).flow
+            )
+        }
     }
+
 }
 
 

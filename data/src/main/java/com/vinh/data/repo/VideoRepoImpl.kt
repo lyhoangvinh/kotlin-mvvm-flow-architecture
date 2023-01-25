@@ -1,7 +1,7 @@
 package com.vinh.data.repo
 
 import androidx.paging.*
-import com.vinh.data.DatabaseManager
+import com.vinh.data.manager.DatabaseManager
 import com.vinh.data.dao.VideosDao
 import com.vinh.data.services.AvgleService
 import com.vinh.data.source.VideoPageKeyedRemoteMediator

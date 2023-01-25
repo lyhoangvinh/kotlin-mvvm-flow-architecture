@@ -1,4 +1,4 @@
-package com.vinh.data
+package com.vinh.domain
 
 class Constants {
     companion object {

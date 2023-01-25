@@ -2,8 +2,8 @@ package com.lyhoangvinh.simple.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.vinh.data.DatabaseManager
-import com.vinh.data.SharedPrefs
+import com.vinh.data.manager.DatabaseManager
+import com.vinh.data.manager.SharedPrefs
 import com.vinh.data.dao.*
 import dagger.Module
 import dagger.Provides

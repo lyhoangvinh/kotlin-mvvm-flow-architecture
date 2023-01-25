@@ -1,4 +1,4 @@
-package com.lyhoangvinh.simple.utils.network
+package com.vinh.data.utils.network
 
 import com.vinh.domain.model.Resource
 import okhttp3.Request

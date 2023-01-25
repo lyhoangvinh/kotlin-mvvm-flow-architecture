@@ -1,10 +1,9 @@
-package com.vinh.data
+package com.vinh.data.manager
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.asFlow
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.vinh.data.utils.BaseSharedPreferenceLiveData
 import com.vinh.data.utils.SingletonHolder
 import kotlinx.coroutines.flow.Flow
