@@ -170,7 +170,7 @@ class SafeMutableLiveData<T> : MutableLiveData<T>() {
 ```
 #### Execute room
 ```kotlin
-   CoroutineScope.launch {
+   databaseManager.withTransaction {
             try {
                 val usersFromDb = dbHelper.getUsers()
                 // here you have your usersFromDb
