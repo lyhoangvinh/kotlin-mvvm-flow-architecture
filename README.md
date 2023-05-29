@@ -1,7 +1,7 @@
 <img src="https://user-images.githubusercontent.com/29915177/58609187-e9460780-82d0-11e9-943b-73d71d4f9de2.jpeg"/> 
 
 # Kotlin MVVM Clean Architecture
-This repository contains a detailed sample app that implements MVVM architecture in Kotlin using Dagger2, Room, RxJava2...
+This repository contains a detailed sample app that implements MVVM architecture in Kotlin using Dagger Hilt, Room, Coroutines...
 
 # MVVM Design Pattern
 
@@ -24,8 +24,8 @@ The main players in the MVVM pattern are:
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
 * Android Support Libraries
 * [Paging](https://developer.android.com/jetpack/androidx/releases/paging)
-* [RxJava2](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
-* [Dagger 2 (2.11)](https://github.com/google/dagger)
+* [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+* [Dagger hilt](https://dagger.dev/hilt/) 
 * [Picasso](https://square.github.io/picasso/)
 * [Retrofit](http://square.github.io/retrofit/)
 * [OkHttp](http://square.github.io/okhttp/)
